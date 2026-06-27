@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+//import { useParams, useNavigate } from "react-router";
 import type { Post } from "../types/Post";
 import { getPostById } from "../services/posts";
 import Loading from "../components/Loading/Loading";
@@ -8,7 +8,10 @@ import CommentList from "../components/CommentList/CommentList";
 import CommentForm from "../components/CommentForm/CommentForm";
 
 export default function PostDetail() {
-  const { id } = useParams();
+  //const navigate = useNavigate();
+  //const { id } = useParams();
+
+  const id = "6a402c41cb3429abf2908902";
 
   const [post, setPost] = useState<Post | null>(null);
 
@@ -23,7 +26,7 @@ export default function PostDetail() {
 
         setPost(data);
       } catch (error) {
-        console.error(error);
+        console.error("Error inesperado: ", error);
       } finally {
         setLoading(false);
       }
@@ -61,57 +64,79 @@ export default function PostDetail() {
         px-4
       "
     >
-      <div
+      <button
+        //onClick={() => navigate(-1)}
         className="
-          max-w-4x1
-          mx-auto
-          bg-surface
-          rounded-2x1
-          shadow-md
-          p-8
+          flex
+          items-center
+          gap-2
+          text-primary
+          font-medium
+          mb-6
+          hover:text-primary-dark
+          transition
         "
       >
-        <p
-          className="
-            text-text-secondary
-            text-sm
-            mb-2
-          "
-        >
-          Publicado por
-        </p>
+        ← Volver
+      </button>
 
-        <h2
-          className="
-            text-primary
-            text-lg
-            font-semibold
-            mb-6
-          "
-        >
-          {post?.user.nickname}
-        </h2>
+      <h1
+        className="
+          text-4xl
+          font-bold
+          mb-8
+        "
+      >
+        Publicación
+      </h1>
 
-        <p
-          className="
-            text-text-secondary
-            text-sm
-            mb-6
-          "
-        >
-          {new Date(post.fecha).toLocaleDateString("es-AR")}
-        </p>
+      <div
+        className="
+          max-w-2xl
+          mx-auto
+          bg-white
+          rounded-3x1
+          shadow-md
+          p-8
+          mb-10
+        "
+      >
+        <div className="flex items-center gap-3 mb-5">
+          <img
+            src="https://i.pravatar.cc/80"
+            alt="avatar"
+            className="
+              w-12
+              h-12
+              rounded-full
+              object-cover
+            "
+          />
 
-        <p
+          <div>
+            <h3 className="font-semibold">{post?.user.nickname}</h3>
+
+            <p
+              className="
+                text-sm
+                text-text-secondary
+              "
+            >
+              {new Date(post.fecha).toLocaleDateString("es-AR")}
+            </p>
+          </div>
+        </div>
+
+        <h1
           className="
-            text-text
-            text-xl
-            leading-relaxed
-            mb-6
+            text-3x1
+            font-bold
+            leading-snug
+            mb-5
           "
         >
           {post?.texto}
-        </p>
+        </h1>
 
         {post?.tags.length > 0 && (
           <div
@@ -119,16 +144,16 @@ export default function PostDetail() {
               flex
               flex-wrap
               gap-2
-              mb-8
+              mb-6
             "
           >
             {post?.tags.map((tag) => (
               <span
                 key={tag._id}
                 className="
-                  bg-secondary
-                  text-white
-                  px-4
+                  bg-secondary/20
+                  text-primary
+                  px-3
                   py-1
                   rounded-full
                   text-sm
@@ -144,15 +169,30 @@ export default function PostDetail() {
         <ImageGallery images={post?.images || []} />
 
         <div className="mt-10">
+
+          <h2
+            className="
+              text-2xl
+              font-bold
+              mb-6
+            "
+          >
+            Comentarios ({post?.comments?.length || 0})
+          </h2>
+
           <CommentList comments={post?.comments || []} />
+
         </div>
 
         <div
           className="
             mt-8
-            border-t
+            bg-gray-50
+            border
             border-border
-            pt-6
+            rounded-2x1
+            overflow-hidden
+            p-4
           "
         >
           <CommentForm />

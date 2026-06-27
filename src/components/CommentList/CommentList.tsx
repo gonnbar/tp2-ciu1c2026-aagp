@@ -20,23 +20,46 @@ export default function CommentList({ comments }: Props) {
 
   return (
     <div className="mt-8">
-      <h2
-        className="
-            text-xl
-            font-semibold
-            mb-4
-        "
-      >
-        Comentarios
-      </h2>
-
       {comments.map((comment) => (
-        <div key={comment._id} className="border-b py-4">
-          <p className="font-semibold">{comment.userId.nickname}</p>
+        <div
+          key={comment._id}
+          className="
+            flex
+            gap-3
+            mb-6
+          "
+        >
+          <img
+            src={`https://i.pravatar.cc/50?u=${comment.userId._id}`}
+            alt="avatar"
+            className="
+              w-10
+              h-10
+              rounded-full
+              object-cover
+              flex-shrink-0
+            "
+          />
 
-          <p>{comment.content}</p>
+          <div className="flex-1">
+            <h4
+              className="font-semibold"
+            >
+              {comment.userId.nickname}
+            </h4>
+
+            <p
+              className="text-text mt-1"
+            >
+              {comment.content}
+            </p>
+
+          </div>
+
         </div>
+
       ))}
+      
     </div>
   );
 }

@@ -19,7 +19,13 @@ export default function ImageGallery({ images }: Props) {
           key={image._id}
           src={image.url}
           alt="Post"
-          className="rounded-lg"
+          className="
+            w-full
+            h-[350px]
+            object-cover
+            rounded-2xl
+            mb-8
+          "
         />
       ))}
     </div>
