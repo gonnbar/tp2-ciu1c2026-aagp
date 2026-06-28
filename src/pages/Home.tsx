@@ -1,7 +1,9 @@
-import banner from "../assets/bannerHome.png";
+import bannerCompu from "../assets/bannerDesktop.png";
+import bannerCel from '../assets/bannerCel.png';
 import SideBar from "../components/SideBar/SideBar";
 import PanelDerecho from "../components/PanelDerecho/PanelDerecho";
 import PostCard from "../components/PostCard/PostCard";
+import PanelAbajo from "../components/SideBar/PanelAbajo";
 import { useEffect, useState } from "react";
 
 type Post = {
@@ -45,12 +47,15 @@ function Home() {
   return (
     <div className="bg-background min-h-screen">
       <div className="relative">
-        <img
-          src={banner}
-          alt="Banner"
-          className="w-full h-64 md:h-80 lg:h-96 object-cover"/>
+          <picture>
+                <source media="(max-width: 700px)" srcSet={bannerCel} />
+                <img src={bannerCompu} alt="Banner" className="w-full h-64 md:h-80 lg:h-96 object-cover"/>
+          </picture>
       <div className="flex flex-col lg:flex-row items-start gap-6 p-6">
+        <div className="w-full lg:w-60 flex flex-col gap-6 lg:sticky lg:top-6 lg:self-start">
         <SideBar />
+        <PanelAbajo/>
+        </div>
         <main className="flex-1 min-w-0">
           <h2 className="text-xl font-bold text-text mb-4">
             Publicaciones recientes
@@ -58,11 +63,13 @@ function Home() {
           {posts.map((post) => (
             <PostCard
               key={post._id}
+              id={post._id}
               usuario={post.user.nickname}
               fecha={post.fecha}
               contenido={post.texto}
               imagen={post.images[0]?.url || ""}
               tags={post.tags}
+              comments={post.comments}
             />
           ))}
         </main>
