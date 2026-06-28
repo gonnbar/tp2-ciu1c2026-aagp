@@ -11,7 +11,7 @@ export default function PostDetail() {
   //const navigate = useNavigate();
   //const { id } = useParams();
 
-  const id = "6a402c41cb3429abf2908902";
+  const id = "6a41a4f0889b1a2b74572724";
 
   const [post, setPost] = useState<Post | null>(null);
 
@@ -75,27 +75,18 @@ export default function PostDetail() {
           mb-6
           hover:text-primary-dark
           transition
+          cursor-pointer
         "
       >
         ← Volver
       </button>
-
-      <h1
-        className="
-          text-4xl
-          font-bold
-          mb-8
-        "
-      >
-        Publicación
-      </h1>
 
       <div
         className="
           max-w-2xl
           mx-auto
           bg-white
-          rounded-3x1
+          rounded-3xl
           shadow-md
           p-8
           mb-10
@@ -129,7 +120,7 @@ export default function PostDetail() {
 
         <h1
           className="
-            text-3x1
+            text-3xl
             font-bold
             leading-snug
             mb-5
@@ -169,7 +160,6 @@ export default function PostDetail() {
         <ImageGallery images={post?.images || []} />
 
         <div className="mt-10">
-
           <h2
             className="
               text-2xl
@@ -181,7 +171,6 @@ export default function PostDetail() {
           </h2>
 
           <CommentList comments={post?.comments || []} />
-
         </div>
 
         <div
@@ -190,7 +179,7 @@ export default function PostDetail() {
             bg-gray-50
             border
             border-border
-            rounded-2x1
+            rounded-2xl
             overflow-hidden
             p-4
           "
