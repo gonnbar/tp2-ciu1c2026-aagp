@@ -2,6 +2,7 @@ import NavBar from './components/Navbar/Navbar';
 import { Routes, Route } from "react-router";
 import Register from '../src/pages/Register'
 import './App.css'
+import Home from './pages/Home';
 
 function App() {
   return (  
@@ -10,6 +11,7 @@ function App() {
         <Route path="/"element={
             <>
             <NavBar />
+            <Home/>
           </>
     }
   />

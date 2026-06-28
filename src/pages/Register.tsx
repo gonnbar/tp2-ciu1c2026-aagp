@@ -3,7 +3,7 @@ import logo from '../assets/imageLOGO.png';
 
 function Registro() {
   return (
-    <div className="flex min-h-screen flex-col justify-center px-6 py-4 lg:px-8">
+    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
 
       {/* Boton para volver a la pagina de home */}
       <div className="mb-6">

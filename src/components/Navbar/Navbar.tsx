@@ -9,8 +9,8 @@ function NavBar () {
             <img src={logo} alt="Logo Unahur" className="h-10 w-10"></img>
              <span className="text-2xl font-bold text-black">UnaHur</span>
         </Link>
-        <div className="flex items-center gap-8 text-gray-700 font-medium">
-          <Link to="/"className="rounded-lg border border-primary px-6 py-2 text-primary">Iniciar Sesion</Link>
+        <div className="flex items-center gap-2 sm:gap-4 md:gap-8">
+          <Link to="/"className="rounded-lg border border-primary px-4 py-2 text-primary text-center">Iniciar Sesion</Link>
        <Link to="/registro" className="rounded-lg bg-primary-dark px-6 py-2 text-white"> Registrarse </Link>
         </div>
       </div>
