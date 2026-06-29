@@ -1,4 +1,4 @@
-import { Navigate, Routes, Route } from "react-router";
+import { Navigate, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import Bienvenida from "./pages/Bienvenida";
@@ -13,7 +13,6 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        {/* Públicas */}
 
         <Route path="/" element={<Bienvenida />} />
 
