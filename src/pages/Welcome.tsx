@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/UserContext";
 import logoBienvenida from "../assets/logoBienvenida.png";
 
 //  <h1 className="tracking-wider"> Bienvenido a </h1>
 
-function bienvenida() {
+export default function Welcome() {
+  const { isAuthenticated } = useAuth();
+
+  if (isAuthenticated) {
+    return <Navigate to="/home" replace />;
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#3F2B96] via-[#6A4CDB] to-[#D16BA5]">
       <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-purple-400/20 blur-3xl"></div>
@@ -34,4 +42,3 @@ function bienvenida() {
     </div>
   );
 }
-export default bienvenida;

@@ -9,7 +9,8 @@ export default function ImageGallery({ images }: Props) {
     <div
       className="
             grid
-            grid-cols-2
+            grid-cols-1
+            sm:grid-cols-2
             gap-4
             my-6
         "
@@ -20,11 +21,8 @@ export default function ImageGallery({ images }: Props) {
           src={image.url}
           alt="Post"
           className="
-            w-full
-            h-[350px]
+            aspect-square
             object-cover
-            rounded-2xl
-            mb-8
           "
         />
       ))}

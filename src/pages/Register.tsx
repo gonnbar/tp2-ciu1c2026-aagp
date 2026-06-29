@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/UserContext";
 import logo from '../assets/imageLOGO.png';
 import { validarRegistro } from "../validaciones/validacion";
 import { useState } from "react";
 
-function Registro() {
+export default function Register() {
   const navigate = useNavigate();
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
@@ -15,7 +17,13 @@ function Registro() {
     contraseña: "",
   });
   const [mensaje, setMensaje] = useState("");
-  const handleSubmit = async (e: React.FormEvent) => {
+  const { isAuthenticated } = useAuth();
+
+  if (isAuthenticated) {
+    return <Navigate to="/home" replace />;
+  }
+
+  const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
     const resultado = validarRegistro(
       nickname,
@@ -78,7 +86,7 @@ function Registro() {
           <img src={logo} alt="Logo UnaHur" className="mx-auto h-15 w-auto"/>
           <h2 className="mt-4 text-center text-2xl font-bold tracking-tight text-text"> Crear cuenta </h2>
         </div>
-        {/* formulario */}
+        
         <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -145,4 +153,3 @@ function Registro() {
     </div>
   );
 }
-export default Registro;

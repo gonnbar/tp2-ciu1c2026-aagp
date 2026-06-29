@@ -1,8 +1,16 @@
 import { useEffect, useRef, useState, type SubmitEvent } from "react";
+import { createComment } from "../../services/comments";
+import type { Comment } from "../../types/Comment";
 
 const MAX_CHARACTERS = 500;
 
-export default function CommentForm() {
+type CommentFormProps = {
+  userId: string;
+  postId: string;
+  onCommentCreated: (comment: Comment) => void;
+};
+
+export default function CommentForm({ userId, postId, onCommentCreated }: CommentFormProps) {
   const [content, setContent] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -12,7 +20,7 @@ export default function CommentForm() {
     }
   }, []);
 
-  function handleSubmit(e: SubmitEvent) {
+  async function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
 
     if (!content.trim()) {
@@ -21,14 +29,23 @@ export default function CommentForm() {
       return;
     }
 
-    console.log(content);
+    try {
+      const newComment = await createComment({
+        content,
+        userId,
+        postId,
+      });
 
-    alert("Comentario enviado (prueba)");
+      onCommentCreated(newComment);
 
-    setContent("");
+      setContent("");
 
-    if (textareaRef.current) {
-      textareaRef.current.style.height = "48px";
+      if (textareaRef.current) {
+        textareaRef.current.style.height = "48px";
+      }
+    } catch (error) {
+      console.error(error);
+      alert("No se pudo crear el comentario.");
     }
   }
 
