@@ -6,9 +6,8 @@ function Footer() {
       <div className="flex flex-col md:flex-row justify-between items-center gap-6">
         <p className="text-sm text-text-secondary text-center md:text-left"> © 2026 UnaHur Anti-Social Net. Todos los derechos reservados.</p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Link to="/sobre-nosotros" className="text-text hover:text-primary"> Sobre nosotros </Link>
-          <Link to="/contacto" className="text-text hover:text-primary"> Contacto</Link>
-          <Link to="/" className="text-text hover:text-primary"> Ayuda</Link>
+          <Link to="/about" className="text-text hover:text-primary"> Sobre nosotros </Link>
+          <Link to="/home" className="text-text hover:text-primary"> Home</Link>
         </div>
       </div>
     </footer>

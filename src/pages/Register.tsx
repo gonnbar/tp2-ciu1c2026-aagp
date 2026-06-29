@@ -73,12 +73,7 @@ function Registro() {
   };
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="mb-6">
-        <Link to="/" className="inline-flex items-center rounded-lg border border-primary px-3 py-1.5 text-sm text-primary hover:bg-primary hover:text-white">
-          Volver
-        </Link>
-      </div>
-      <div className="bg-white shadow-md flex flex-col justify-center px-4 py-6 lg:px-5">
+      <div className="mx-auto w-full max-w-md rounded-xl bg-white shadow-lg px-6 py-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img src={logo} alt="Logo UnaHur" className="mx-auto h-15 w-auto"/>
           <h2 className="mt-4 text-center text-2xl font-bold tracking-tight text-text"> Crear cuenta </h2>

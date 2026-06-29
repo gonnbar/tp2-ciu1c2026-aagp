@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-//import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate } from "react-router-dom";
 import type { Post } from "../types/Post";
 import { getPostById } from "../services/posts";
 import { formatPostDate } from "../utils/date";
@@ -9,10 +9,10 @@ import CommentList from "../components/CommentList/CommentList";
 import CommentForm from "../components/CommentForm/CommentForm";
 
 export default function PostDetail() {
-  //const navigate = useNavigate();
-  //const { id } = useParams();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-  const id = "6a41a4f0889b1a2b74572724";
+  //const id = "6a41a4f0889b1a2b74572724";
 
   const [post, setPost] = useState<Post | null>(null);
 
@@ -66,7 +66,7 @@ export default function PostDetail() {
       "
     >
       <button
-        //onClick={() => navigate(-1)}
+        onClick={() => navigate(-1)}
         className="
           flex
           items-center
@@ -98,10 +98,12 @@ export default function PostDetail() {
             src="https://i.pravatar.cc/80"
             alt="avatar"
             className="
-              w-12
-              h-12
+              w-14
+              h-14
               rounded-full
               object-cover
+              border-2
+              border-secondary/30
             "
           />
 

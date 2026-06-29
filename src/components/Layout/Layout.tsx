@@ -1,19 +1,22 @@
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 
 export function Layout() {
+  const location = useLocation();
+  const ocultarLayout = ["/", "/login", "/register"].includes(
+    location.pathname,
+  );
   return (
     <>
       <div className="min-h-screen flex flex-col bg-background">
-        
-        <Navbar />
+        {!ocultarLayout && <Navbar />}
 
         <main className="flex-1">
           <Outlet />
         </main>
 
-        <Footer />
+        {!ocultarLayout && <Footer />}
       </div>
     </>
   );
