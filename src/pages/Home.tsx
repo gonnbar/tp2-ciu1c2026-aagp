@@ -42,12 +42,12 @@ function Home() {
           />
         </picture>
 
-        <div className="flex flex-col lg:flex-row items-start gap-6 p-6">
+        <div className="max-w-7x1 mx-auto flex flex-col lg:flex-row gap-6 p-4 md:p-6">
           <div className="w-full lg:w-60 flex flex-col gap-6 lg:sticky lg:top-6 lg:self-start">
             <SideBar />
           </div>
-          <main className="flex-1 min-w-0">
-            <h2 className="text-xl font-bold text-text mb-4">
+          <main className="w-full flex-1 min-w-0">
+            <h2 className="text-xl md:text-2xl font-bold text-text mb-6">
               Publicaciones recientes
             </h2>
             {posts.length === 0 ? (

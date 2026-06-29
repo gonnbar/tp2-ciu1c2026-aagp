@@ -12,8 +12,6 @@ export default function PostDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  //const id = "6a41a4f0889b1a2b74572724";
-
   const [post, setPost] = useState<Post | null>(null);
 
   const [loading, setLoading] = useState(true);
@@ -21,7 +19,10 @@ export default function PostDetail() {
   useEffect(() => {
     async function cargarPost() {
       try {
-        if (!id) return;
+        if (!id) {
+          setLoading(false);
+          return;
+        }
 
         const data = await getPostById(id);
 
@@ -61,13 +62,26 @@ export default function PostDetail() {
       className="
         min-h-screen
         bg-background
-        py-10
+        py-6 
+        md:py-10
         px-4
       "
     >
-      <button
-        onClick={() => navigate(-1)}
+      <div
         className="
+          max-w-2xl
+          mx-auto
+          bg-white
+          rounded-3xl
+          shadow-md
+          p-5 
+          md:p-8
+          mb-10
+        "
+      >
+        <button
+          onClick={() => navigate(-1)}
+          className="
           flex
           items-center
           gap-2
@@ -78,28 +92,19 @@ export default function PostDetail() {
           transition
           cursor-pointer
         "
-      >
-        ← Volver
-      </button>
+        >
+          ← Volver
+        </button>
 
-      <div
-        className="
-          max-w-2xl
-          mx-auto
-          bg-white
-          rounded-3xl
-          shadow-md
-          p-8
-          mb-10
-        "
-      >
         <div className="flex items-center gap-3 mb-5">
           <img
-            src="https://i.pravatar.cc/80"
-            alt="avatar"
+            src={`https://i.pravatar.cc/80?u=${post.user.nickname}`}
+            alt={post.user.nickname}
             className="
-              w-14
-              h-14
+              w-12 
+              h-12 
+              md:w-14 
+              md:h-14
               rounded-full
               object-cover
               border-2
@@ -108,7 +113,7 @@ export default function PostDetail() {
           />
 
           <div>
-            <h3 className="font-semibold">{post?.user.nickname}</h3>
+            <h3 className="font-semibold">{post.user.nickname}</h3>
 
             <p
               className="
@@ -121,16 +126,17 @@ export default function PostDetail() {
           </div>
         </div>
 
-        <h1
+        <p
           className="
-            text-3xl
-            font-bold
-            leading-snug
-            mb-5
+            text-base 
+            md:text-lg
+            text-text
+            leading-relaxed
+            mb-6
           "
         >
-          {post?.texto}
-        </h1>
+          {post.texto}
+        </p>
 
         {post?.tags.length > 0 && (
           <div
@@ -141,7 +147,7 @@ export default function PostDetail() {
               mb-6
             "
           >
-            {post?.tags.map((tag) => (
+            {post.tags.map((tag) => (
               <span
                 key={tag._id}
                 className="
@@ -160,20 +166,21 @@ export default function PostDetail() {
           </div>
         )}
 
-        <ImageGallery images={post?.images || []} />
+        <ImageGallery images={post.images || []} />
 
-        <div className="mt-10">
+        <div className="mt-12">
           <h2
             className="
-              text-2xl
+              text-xl 
+              md:text-2xl
               font-bold
               mb-6
             "
           >
-            Comentarios ({post?.comments?.length || 0})
+            Comentarios ({post.comments.length || 0})
           </h2>
 
-          <CommentList comments={post?.comments || []} />
+          <CommentList comments={post.comments || []} />
         </div>
 
         <div
@@ -184,7 +191,7 @@ export default function PostDetail() {
             border-border
             rounded-2xl
             overflow-hidden
-            p-4
+            p-3 md:p-4
           "
         >
           <CommentForm />

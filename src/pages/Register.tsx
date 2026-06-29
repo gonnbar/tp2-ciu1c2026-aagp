@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/UserContext";
 import logo from '../assets/imageLOGO.png';
 import { validarRegistro } from "../validaciones/validacion";
 import { useState } from "react";
 
-function Registro() {
+export default function Register() {
   const navigate = useNavigate();
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
@@ -15,6 +17,12 @@ function Registro() {
     contraseña: "",
   });
   const [mensaje, setMensaje] = useState("");
+  const { isAuthenticated } = useAuth();
+
+  if (isAuthenticated) {
+    return <Navigate to="/home" replace />;
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const resultado = validarRegistro(
@@ -145,4 +153,3 @@ function Registro() {
     </div>
   );
 }
-export default Registro;
