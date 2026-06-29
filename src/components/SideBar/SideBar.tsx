@@ -11,7 +11,7 @@ function SideBar() {
     const { logout } = useAuth();
     const [menuOpen, setMenuOpen] = useState(false);
     return (
-        <aside className="relative lg:w-60">
+        <aside className="relative lg:w-64">
             <button onClick={() => setMenuOpen(!menuOpen)}className="lg:hidden mb-3 rounded-lg bg-surface p-3 shadow-md text-text"> ☰</button>
             <div className={`bg-surface rounded-xl shadow-md p-4 transition-all duration-300 lg:block ${menuOpen ? "block" : "hidden"}`}>
                 <nav className="flex flex-col gap-4">
