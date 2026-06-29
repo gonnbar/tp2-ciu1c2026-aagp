@@ -7,10 +7,14 @@ import {
     getTags,
 } from "../services/createPost";
 import type { Tag } from "../types/Tag";
+// import Toast from "../components/Toast/Toast";
+
+
 
 function CreatePost() {
     const { user } = useAuth();
     const navigate = useNavigate();
+   // const [message, setMessage] = useState("");
 
     const [texto, setTexto] = useState("");
     const [images, setImages] = useState<string[]>([""]);
@@ -28,7 +32,6 @@ function CreatePost() {
                 console.error(error);
             }
         };
-
         fetchTags();
     }, []);
 
@@ -39,10 +42,11 @@ function CreatePost() {
     };
 
     const addImageField = () => {
+        if (images.length >= 4) return;
         setImages([...images, ""]);
     };
 
-    const toggleTag = (tagId: string) => {
+    const actualizarSelectedTags = (tagId: string) => {
         if (selectedTags.includes(tagId)) {
             setSelectedTags(selectedTags.filter((id) => id !== tagId));
         } else {
@@ -52,14 +56,11 @@ function CreatePost() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         if (!user?._id) return;
-
         if (texto.trim() === "") {
             setErrorTexto("La descripción es obligatoria.");
             return;
         }
-
         setErrorTexto("");
 
         try {
@@ -68,18 +69,15 @@ function CreatePost() {
                 user: user._id,
                 tags: selectedTags,
             });
-
             const validImages = images.filter(
                 (img) => img.trim() !== ""
             );
-
             for (const url of validImages) {
                 await createPostImage({
                     url,
                     postId: post._id,
                 });
             }
-
             setPublicado(true);
         } catch (error) {
             console.error(error);
@@ -91,24 +89,19 @@ function CreatePost() {
         return (
             <div className="min-h-screen bg-background flex items-center justify-center p-6">
                 <div className="bg-surface rounded-2xl shadow-md p-8 max-w-md w-full text-center">
-
                     <h2 className="text-2xl font-bold text-success mb-4">
                         Se ha publicado el post.
                     </h2>
-
                     <p className="text-textSecondary mb-6">
                         Tu post se publicó correctamente.
                     </p>
-
                     <div className="flex flex-col gap-3">
-
                         <button
                             onClick={() => navigate("/profile")}
                             className="w-full bg-primary hover:bg-primaryDark text-white py-3 rounded-lg transition"
                         >
                             Ir a Perfil
                         </button>
-
                         <button
                             onClick={() => {
                                 setPublicado(false);
@@ -119,9 +112,8 @@ function CreatePost() {
                             }}
                             className="w-full border border-border rounded-lg py-3 hover:bg-background transition"
                         >
-                            Publicar otro post
+                            Nuevo post
                         </button>
-
                     </div>
                 </div>
             </div>
@@ -135,20 +127,19 @@ function CreatePost() {
                 className="max-w-2xl mx-auto bg-surface rounded-2xl shadow-md p-6 space-y-6"
             >
                 <h1 className="text-2xl font-bold text-text">
-                    ¿Qué estás pensando?
+                    Crear nuevo post
                 </h1>
-
                 <div>
                     <label className="block mb-2 font-semibold">
                         Descripción
                     </label>
-
                     <textarea
                         value={texto}
                         onChange={(e) => {
                             setTexto(e.target.value);
                             setErrorTexto("");
                         }}
+                        placeholder="¿Qué estás pensando?..."
                         className="w-full border border-border rounded-lg p-3"
                         rows={4}
                     />
@@ -158,11 +149,10 @@ function CreatePost() {
                             {errorTexto}
                         </p>
                     )}
-                </div>        <div>
-                    <label className="block mb-2 font-semibold">
-                        URLs de imágenes
-                    </label>
 
+                    <label className="block mb-2 font-semibold">
+                        Imágenes
+                    </label>
                     <div className="space-y-2">
                         {images.map((image, index) => (
                             <input
@@ -177,28 +167,29 @@ function CreatePost() {
                             />
                         ))}
                     </div>
-
-                    <button
-                        type="button"
-                        onClick={addImageField}
-                        className="mt-2 text-primary hover:text-primaryDark"
-                    >
-                        + Agregar otra imagen
-                    </button>
+                    { images.length < 4 && (
+                        <button
+                            type="button"
+                            onClick={addImageField}
+                            className="mt-2 text-primary hover:text-primaryDark"
+                        >
+                            + Agregar imagen
+                        </button>
+                    )}
                 </div>
 
                 <div>
                     <label className="block mb-2 font-semibold">
                         Tags
                     </label>
-
                     <div className="flex flex-wrap gap-2">
                         {allTags.map((tag) => (
                             <button
                                 key={tag._id}
                                 type="button"
-                                onClick={() => toggleTag(tag._id)}
-                                className={`px-3 py-1 rounded-lg border transition 
+                                onClick={() => actualizarSelectedTags(tag._id)}
+                                className={
+                                    `px-3 py-1 rounded-lg border transition 
                                     ${selectedTags.includes(tag._id)
                                         ? "bg-primary text-white border-primary"
                                         : "bg-white border-border hover:bg-background"
@@ -209,7 +200,6 @@ function CreatePost() {
                         ))}
                     </div>
                 </div>
-
                 <button
                     type="submit"
                     className="w-full bg-primary hover:bg-primaryDark text-white py-3 rounded-lg transition"
