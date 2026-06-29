@@ -5,7 +5,7 @@ import type { Comment } from "../types/Comment";
 import { getPostById } from "../services/posts";
 import { formatPostDate } from "../utils/date";
 import Loading from "../components/Loading/Loading";
-import ImageGallery from "../components/ImageGallery/ImageGallery";
+import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
 import CommentList from "../components/CommentList/CommentList";
 import CommentForm from "../components/CommentForm/CommentForm";
 import { useAuth } from "../context/UserContext";
@@ -179,7 +179,7 @@ export default function PostDetail() {
         )}
 
         {post.images.length > 0 ? (
-          <ImageGallery images={post.images} />
+          <ImageCarousel images={post.images} />
         ) : (
           <div
             className="

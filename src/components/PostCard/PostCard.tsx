@@ -124,9 +124,9 @@ function PostCard({ post }: PostCardProps) {
                     absolute
                     top-2
                     right-2
-                    bg-black/70
+                    bg-black/60
                     text-white
-                    px-2.5
+                    px-3
                     py-1
                     rounded-md
                     text-xs
