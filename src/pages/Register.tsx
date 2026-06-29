@@ -23,7 +23,7 @@ export default function Register() {
     return <Navigate to="/home" replace />;
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
     const resultado = validarRegistro(
       nickname,
@@ -86,7 +86,7 @@ export default function Register() {
           <img src={logo} alt="Logo UnaHur" className="mx-auto h-15 w-auto"/>
           <h2 className="mt-4 text-center text-2xl font-bold tracking-tight text-text"> Crear cuenta </h2>
         </div>
-        {/* formulario */}
+        
         <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>

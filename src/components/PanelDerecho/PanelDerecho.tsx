@@ -12,7 +12,7 @@ function PanelDerecho() {
           <div className="flex flex-col gap-3">
             <span className="flex items-center gap-2 text-secondary hover:text-primary transition cursor-pointer">
               <img src={hashtag} className="w-4 h-4" />
-              Programacion
+              Programación
             </span>
             <span className="flex items-center gap-2 text-secondary hover:text-primary transition cursor-pointer">
               <img src={hashtag} className="w-4 h-4" />
@@ -20,7 +20,7 @@ function PanelDerecho() {
             </span>
             <span className="flex items-center gap-2 text-secondary hover:text-primary transition cursor-pointer">
               <img src={hashtag} className="w-4 h-4" />
-              antisocial
+              Antisocial
             </span>
             <span className="flex items-center gap-2 text-secondary hover:text-primary transition cursor-pointer">
               <img src={hashtag} className="w-4 h-4" />

@@ -8,10 +8,11 @@ type PostCardProps = {
 };
 
 function PostCard({ post }: PostCardProps) {
+  console.log(post.images);
   return (
     <div className="mb-6 rounded-xl bg-surface p-5 shadow-md">
       <div className="flex flex-col md:flex-row gap-6">
-        <div className="flex-1">
+        <div className="flex-1 flex flex-col">
           <div className="flex items-center gap-3 mb-4">
             <img
               src={`https://i.pravatar.cc/80?u=${post.user.nickname}`}
@@ -49,7 +50,11 @@ function PostCard({ post }: PostCardProps) {
               </p>
             </div>
           </div>
-          <p className="mb-5 text-text text-base md:text-lg leading-relaxed">{post.texto}</p>
+
+          <p className="mb-5 text-text text-base md:text-lg leading-relaxed">
+            {post.texto}
+          </p>
+
           {post.tags.length > 0 && (
             <div className="mb-4 flex flex-wrap gap-2">
               {post.tags.map((tag) => (
@@ -70,8 +75,11 @@ function PostCard({ post }: PostCardProps) {
               ))}
             </div>
           )}
+
           <div
             className="
+              mt-auto
+              pt-6
               flex
               items-center
               gap-2
@@ -79,29 +87,66 @@ function PostCard({ post }: PostCardProps) {
             "
           >
             <img src={comentario} alt="Comentarios" className="w-4 h-4" />
+
             <span>
               {post.comments.length}{" "}
               {post.comments.length === 1 ? "comentario" : "comentarios"}
             </span>
           </div>
         </div>
-        <div className="flex flex-col items-center">
-          {post.images.length > 0 && (
-            <img
-              src={post.images[0].url}
-              alt="Publicación"
-              className="
-                w-full
-                max-w-sm
-                rounded-lg
-                object-cover
-              "
-            />
+
+        <div
+          className="
+            flex 
+            flex-col
+            justify-between
+            items-center
+            w-full
+            md:w-auto
+          "
+        >
+          {post.images.length > 0 ? (
+            <div className="relative">
+              <img
+                src={post.images[0].url}
+                alt="Publicación"
+                className="
+                  w-full
+                  max-w-sm
+                  h-48
+                  object-cover
+                  rounded-lg
+                "
+              />
+              {post.images.length > 1 && (
+                <span
+                  className="
+                    absolute
+                    top-2
+                    right-2
+                    bg-black/70
+                    text-white
+                    px-2.5
+                    py-1
+                    rounded-md
+                    text-xs
+                    font-medium
+                  "
+                >
+                  +{post.images.length - 1}
+                </span>
+              )}
+            </div>
+          ) : (
+            <div className="flex-1" />
           )}
+
           <Link
             to={`/post/${post._id}`}
             className="
               mt-4
+              md:mt-6
+              self-end
               rounded-xl
               bg-primary
               px-5

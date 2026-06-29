@@ -41,11 +41,11 @@ export default function PostDetail() {
   }, [id]);
 
   function handleCommentCreated(comment: Comment) {
-    if(!post) return;
+    if (!post) return;
 
     setPost({
       ...post,
-      comments: [...post.comments, comment]
+      comments: [...post.comments, comment],
     });
   }
 
@@ -178,7 +178,22 @@ export default function PostDetail() {
           </div>
         )}
 
-        <ImageGallery images={post.images || []} />
+        {post.images.length > 0 ? (
+          <ImageGallery images={post.images} />
+        ) : (
+          <div
+            className="
+              bg-gray-50
+              rounded-2xl
+              py-10
+              text-center
+              text-text-secondary
+            "
+          >
+            <div className="text-4xl mb-3">🖼️</div>
+            <p>La publicación no tiene imágenes.</p>
+          </div>
+        )}
 
         <div className="mt-12">
           <h2
@@ -192,7 +207,20 @@ export default function PostDetail() {
             Comentarios ({post.comments.length || 0})
           </h2>
 
-          <CommentList comments={post.comments || []} />
+          {post.comments.length === 0 ? (
+            <div
+              className="
+                py-10
+                text-center
+                text-text-secondary
+              "
+            >
+              <div className="text-4xl mb-3">👻</div>
+              <p>Todavía no hay comentarios.</p>
+            </div>
+          ) : (
+            <CommentList comments={post.comments} />
+          )}
         </div>
 
         <div
@@ -208,7 +236,7 @@ export default function PostDetail() {
         >
           {user && (
             <CommentForm
-              userId={user._id} 
+              userId={user._id}
               postId={post._id}
               onCommentCreated={handleCommentCreated}
             />
