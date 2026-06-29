@@ -1,4 +1,5 @@
 import type { Comment } from "../../types/Comment";
+import { formatPostDate } from "../../utils/date";
 
 type Props = {
   comments: Comment[];
@@ -42,24 +43,16 @@ export default function CommentList({ comments }: Props) {
           />
 
           <div className="flex-1">
-            <h4
-              className="font-semibold"
-            >
-              {comment.userId.nickname}
-            </h4>
+            <h4 className="font-semibold">{comment.userId.nickname}</h4>
 
-            <p
-              className="text-text mt-1"
-            >
-              {comment.content}
+            <p className="text-xs text-text-secondary">
+              {formatPostDate(comment.createdAt)}
             </p>
 
+            <p className="text-text mt-1">{comment.content}</p>
           </div>
-
         </div>
-
       ))}
-      
     </div>
   );
 }
