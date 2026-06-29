@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import type { Post } from "../types/Post";
+import type { Comment } from "../types/Comment";
 import { getPostById } from "../services/posts";
 import { formatPostDate } from "../utils/date";
 import Loading from "../components/Loading/Loading";
 import ImageGallery from "../components/ImageGallery/ImageGallery";
 import CommentList from "../components/CommentList/CommentList";
 import CommentForm from "../components/CommentForm/CommentForm";
+import { useAuth } from "../context/UserContext";
 
 export default function PostDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { user } = useAuth();
 
   const [post, setPost] = useState<Post | null>(null);
 
@@ -36,6 +39,15 @@ export default function PostDetail() {
 
     cargarPost();
   }, [id]);
+
+  function handleCommentCreated(comment: Comment) {
+    if(!post) return;
+
+    setPost({
+      ...post,
+      comments: [...post.comments, comment]
+    });
+  }
 
   if (loading) {
     return <Loading />;
@@ -194,7 +206,13 @@ export default function PostDetail() {
             p-3 md:p-4
           "
         >
-          <CommentForm />
+          {user && (
+            <CommentForm
+              userId={user._id} 
+              postId={post._id}
+              onCommentCreated={handleCommentCreated}
+            />
+          )}
         </div>
       </div>
     </div>

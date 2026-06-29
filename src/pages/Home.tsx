@@ -60,7 +60,7 @@ function Home() {
                   text-text-secondary
                 "
               >
-                <span className="text-5xl mb-4">👻</span>
+                <span className="text-5xl mb-4">👻</span>//cambiar por svg
                 <p>No hay publicaciones todavía.</p>
               </div>
             ) : (
