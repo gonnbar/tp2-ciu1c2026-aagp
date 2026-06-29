@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import PostDetail from "./pages/PostDetail";
-//import About from "./pages/About";
+import About from "./pages/About";
 //import Profile from "./pages/Profile";
 //import CreatePost from ".pages/CreatePost";
 
@@ -21,7 +21,7 @@ function App() {
 
         <Route path="/register" element={<Register />} />
 
-        {/*<Route path="/about" element={<About />} />*/}
+        <Route path="/about" element={<About />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
