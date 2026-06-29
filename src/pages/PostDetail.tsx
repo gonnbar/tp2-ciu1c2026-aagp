@@ -98,10 +98,12 @@ export default function PostDetail() {
             src="https://i.pravatar.cc/80"
             alt="avatar"
             className="
-              w-12
-              h-12
+              w-14
+              h-14
               rounded-full
               object-cover
+              border-2
+              border-secondary/30
             "
           />
 

@@ -11,3 +11,15 @@ export async function getPostById(id: string) {
 
   return data.post;
 }
+
+export async function getPosts() {
+  const response = await fetch(`${API_URL}/posts`);
+
+  if (!response.ok) {
+    throw new Error("Error al obtener los posts.");
+  }
+
+  const data = await response.json();
+
+  return data.posts;
+}
