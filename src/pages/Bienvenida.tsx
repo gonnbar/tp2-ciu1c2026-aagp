@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import logoBienvenida from '../assets/logoBienvenida.png'
+
 //  <h1 className="tracking-wider"> Bienvenido a </h1>
+
 function bienvenida(){
     return(
     <div className="min-h-screen bg-gradient-to-br from-[#3F2B96] via-[#6A4CDB] to-[#D16BA5]">

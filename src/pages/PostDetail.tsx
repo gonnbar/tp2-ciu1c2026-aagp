@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 //import { useParams, useNavigate } from "react-router";
 import type { Post } from "../types/Post";
 import { getPostById } from "../services/posts";
+import { formatPostDate } from "../utils/date";
 import Loading from "../components/Loading/Loading";
 import ImageGallery from "../components/ImageGallery/ImageGallery";
 import CommentList from "../components/CommentList/CommentList";
@@ -113,7 +114,7 @@ export default function PostDetail() {
                 text-text-secondary
               "
             >
-              {new Date(post.fecha).toLocaleDateString("es-AR")}
+              {formatPostDate(post.fecha)}
             </p>
           </div>
         </div>

@@ -1,14 +1,39 @@
-import { BrowserRouter, Routes, Route } from "react-router";
-
+import { Navigate, Routes, Route } from "react-router";
+import { Layout } from "./components/Layout/Layout";
+import { ProtectedRoute } from "./routes/ProtectedRoute";
+import Bienvenida from "./pages/Bienvenida";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
 import PostDetail from "./pages/PostDetail";
+//import Profile from "./pages/Profile";
+//import CreatePost from ".pages/CreatePost";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<PostDetail />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route element={<Layout />}>
+        {/* Públicas */}
+
+        <Route path="/" element={<Bienvenida />} />
+
+        <Route path="/login" element={<Login />} />
+
+        <Route path="/register" element={<Register />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/home" element={<Home />} />
+
+          <Route path="/post/:id" element={<PostDetail />} />
+
+          {/*<Route path="/profile" element={<Profile />} />
+
+          <Route path="/create-post" element={<CreatePost />} />*/}
+        </Route>
+
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Route>
+    </Routes>
   );
 }
 
