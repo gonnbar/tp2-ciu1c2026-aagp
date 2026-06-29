@@ -1,18 +1,13 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState} from "react";
 import type { AuthContextType, LoginData, User } from "../types/User";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(()=> {
-    const storedUser = localStorage.getItem("user") 
-
-    if (storedUser){
-      setUser(JSON.parse(storedUser))
-    }
-  },[]);
+  const [user, setUser] = useState<User | null>(()=>{
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
   async function login(data: LoginData): Promise<boolean> {
     const db = await fetch("http://localhost:3000/users")

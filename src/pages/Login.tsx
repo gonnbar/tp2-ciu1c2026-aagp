@@ -1,21 +1,26 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { useAuth } from "../context/UserContext";
+import logo from "../assets/imageLOGO.png"
 
 export default function LoginForm() {
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  if (isAuthenticated) {
+    return <Navigate to="/home" replace />;
+  }
+
+  const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
 
     setError("");
 
-    const ok = await login({ nickname, password, rememberMe});
+    const ok = await login({ nickname, password, rememberMe });
 
     if (ok) navigate("/home");
     else setError("Usuario o contraseña inválidos");
@@ -26,6 +31,7 @@ export default function LoginForm() {
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="bg-white rounded-2xl p-6 shadow-md flex flex-col justify-center px-4 py-6 lg:px-5 sm:mx-auto sm:w-full sm:max-w-sm">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <img src={logo} alt="Logo UnaHur" className="mx-auto h-15 w-auto" />
           <h2 className="mt-4 text-center text-2xl font-bold tracking-tight text-text"> Iniciar sesión </h2>
         </div>
         <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
