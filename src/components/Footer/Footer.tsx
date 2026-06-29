@@ -8,7 +8,6 @@ function Footer() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link to="/sobre-nosotros" className="text-text hover:text-primary"> Sobre nosotros </Link>
           <Link to="/contacto" className="text-text hover:text-primary"> Contacto</Link>
-          <Link to="/" className="text-text hover:text-primary"> Ayuda</Link>
         </div>
       </div>
     </footer>

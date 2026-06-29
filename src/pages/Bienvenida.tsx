@@ -18,7 +18,7 @@ function bienvenida(){
             <img src={logoBienvenida} className='mt-8 mb-8 w-72'/>
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
         <Link to="/login" className="rounded-xl bg-white px-8 py-3 font-semibold text-primary transition-all duration-300 hover:scale-105">Iniciar sesión</Link>
-        <Link  to="/registro" className="rounded-xl border-2 border-white px-8 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-white hover:text-primary">
+        <Link  to="/register" className="rounded-xl border-2 border-white px-8 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-white hover:text-primary">
             Registrarse
         </Link>
         </div>
