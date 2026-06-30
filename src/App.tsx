@@ -17,9 +17,7 @@ function App() {
   const state = location.state as {
     backgroundLocation?: Location;
   };
-  console.log("pathname:", location.pathname);
-console.log("location.state:", location.state);
-console.log("backgroundLocation:", state?.backgroundLocation);
+  
   return (
     <>
       <Routes location={state?.backgroundLocation || location}>
