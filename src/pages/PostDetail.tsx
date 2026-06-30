@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import type { Post } from "../types/Post";
 import type { Comment } from "../types/Comment";
 import { getPostById } from "../services/posts";
 import { formatPostDate } from "../utils/date";
 import Loading from "../components/Loading/Loading";
-import ImageGallery from "../components/ImageGallery/ImageGallery";
+import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
 import CommentList from "../components/CommentList/CommentList";
 import CommentForm from "../components/CommentForm/CommentForm";
+import SideBar from "../components/SideBar/SideBar";
+import PanelDerecho from "../components/PanelDerecho/PanelDerecho";
 import { useAuth } from "../context/UserContext";
 
 export default function PostDetail() {
-  const navigate = useNavigate();
   const { id } = useParams();
   const { user } = useAuth();
 
@@ -70,177 +71,146 @@ export default function PostDetail() {
   }
 
   return (
-    <div
-      className="
-        min-h-screen
-        bg-background
-        py-6 
-        md:py-10
-        px-4
-      "
-    >
-      <div
-        className="
-          max-w-2xl
-          mx-auto
-          bg-white
-          rounded-3xl
-          shadow-md
-          p-5 
-          md:p-8
-          mb-10
-        "
-      >
-        <button
-          onClick={() => navigate(-1)}
-          className="
-          flex
-          items-center
-          gap-2
-          text-primary
-          font-medium
-          mb-6
-          hover:text-primary-dark
-          transition
-          cursor-pointer
-        "
-        >
-          ← Volver
-        </button>
-
-        <div className="flex items-center gap-3 mb-5">
-          <img
-            src={`https://i.pravatar.cc/80?u=${post.user.nickname}`}
-            alt={post.user.nickname}
-            className="
-              w-12 
-              h-12 
-              md:w-14 
-              md:h-14
-              rounded-full
-              object-cover
-              border-2
-              border-secondary/30
-            "
-          />
-
-          <div>
-            <h3 className="font-semibold">{post.user.nickname}</h3>
-
-            <p
-              className="
-                text-sm
-                text-text-secondary
-              "
-            >
-              {formatPostDate(post.fecha)}
-            </p>
-          </div>
-        </div>
-
-        <p
-          className="
-            text-base 
-            md:text-lg
-            text-text
-            leading-relaxed
-            mb-6
-          "
-        >
-          {post.texto}
-        </p>
-
-        {post?.tags.length > 0 && (
+    <div className="bg-background min-h-screen">
+      <div className="max-w-7xl mx-auto px-6 py-6">
+        <div className="flex flex-col lg:flex-row items-start gap-6">
           <div
             className="
-              flex
-              flex-wrap
-              gap-2
-              mb-6
+              w-full
+              lg:w-64
+              shrink-0
+              lg:sticky
+              lg:top-6
+              self-start
             "
           >
-            {post.tags.map((tag) => (
-              <span
-                key={tag._id}
-                className="
-                  bg-secondary/20
-                  text-primary
-                  px-3
-                  py-1
-                  rounded-full
-                  text-sm
-                  font-medium
-                "
-              >
-                #{tag.nombre}
-              </span>
-            ))}
+            <SideBar />
           </div>
-        )}
 
-        {post.images.length > 0 ? (
-          <ImageGallery images={post.images} />
-        ) : (
-          <div
-            className="
-              bg-gray-50
-              rounded-2xl
-              py-10
-              text-center
-              text-text-secondary
-            "
-          >
-            <div className="text-4xl mb-3">🖼️</div>
-            <p>La publicación no tiene imágenes.</p>
-          </div>
-        )}
-
-        <div className="mt-12">
-          <h2
-            className="
-              text-xl 
-              md:text-2xl
-              font-bold
-              mb-6
-            "
-          >
-            Comentarios ({post.comments.length || 0})
-          </h2>
-
-          {post.comments.length === 0 ? (
+          <main className="flex-1 min-w-0">
             <div
               className="
-                py-10
-                text-center
-                text-text-secondary
+                bg-white
+                rounded-3xl
+                shadow-md
+                p-5
+                md:p-8
               "
             >
-              <div className="text-4xl mb-3">👻</div>
-              <p>Todavía no hay comentarios.</p>
-            </div>
-          ) : (
-            <CommentList comments={post.comments} />
-          )}
-        </div>
+              <div className="flex items-center gap-3 mb-5">
+                <img
+                  src={`https://i.pravatar.cc/80?u=${post.user.nickname}`}
+                  alt={post.user.nickname}
+                  className="
+                    w-12
+                    h-12
+                    md:w-14
+                    md:h-14
+                    rounded-full
+                    object-cover
+                    border-2
+                    border-secondary/30
+                  "
+                />
 
-        <div
-          className="
-            mt-8
-            bg-gray-50
-            border
-            border-border
-            rounded-2xl
-            overflow-hidden
-            p-3 md:p-4
-          "
-        >
-          {user && (
-            <CommentForm
-              userId={user._id}
-              postId={post._id}
-              onCommentCreated={handleCommentCreated}
-            />
-          )}
+                <div>
+                  <h3 className="font-semibold">{post.user.nickname}</h3>
+
+                  <p className="text-sm text-text-secondary">
+                    {formatPostDate(post.fecha)}
+                  </p>
+                </div>
+              </div>
+
+              <p
+                className="
+                  text-base
+                  md:text-lg
+                  text-text
+                  leading-relaxed
+                  mb-6
+                "
+              >
+                {post.texto}
+              </p>
+
+              {post.tags.length > 0 && (
+                <div
+                  className="
+                    flex
+                    flex-wrap
+                    gap-2
+                    mb-6
+                  "
+                >
+                  {post.tags.map((tag) => (
+                    <span
+                      key={tag._id}
+                      className="
+                        bg-secondary/20
+                        text-primary
+                        px-3
+                        py-1
+                        rounded-full
+                        text-sm
+                        font-medium
+                      "
+                    >
+                      #{tag.nombre}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <ImageCarousel images={post.images} />
+
+              <div className="mt-12">
+                <h2
+                  className="
+                    text-xl
+                    md:text-2xl
+                    font-bold
+                    mb-6
+                  "
+                >
+                  Comentarios ({post.comments.length})
+                </h2>
+
+                <CommentList comments={post.comments} />
+              </div>
+
+              <div
+                className="
+                  mt-8
+                  bg-gray-50
+                  border
+                  border-border
+                  rounded-2xl
+                  overflow-hidden
+                  p-3
+                  md:p-4
+                "
+              >
+                {user && (
+                  <CommentForm
+                    userId={user._id}
+                    postId={post._id}
+                    onCommentCreated={handleCommentCreated}
+                  />
+                )}
+              </div>
+            </div>
+          </main>
+
+          <div
+            className="
+              w-full
+              lg:w-64
+              shrink-0
+            "
+          >
+            <PanelDerecho />
+          </div>
         </div>
       </div>
     </div>

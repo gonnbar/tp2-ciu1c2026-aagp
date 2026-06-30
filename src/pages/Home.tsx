@@ -33,17 +33,18 @@ function Home() {
   return (
     <div className="bg-background min-h-screen">
       <div className="relative">
-        <picture>
-          <source media="(max-width: 700px)" srcSet={bannerCel} />
-          <img
-            src={bannerCompu}
-            alt="Banner"
-            className="w-full h-64 md:h-80 lg:h-96 object-cover"
-          />
-        </picture>
-
-        <div className="max-w-7x1 mx-auto flex flex-col lg:flex-row gap-6 p-4 md:p-6">
-          <div className="w-full lg:w-60 flex flex-col gap-6 lg:sticky lg:top-6 lg:self-start">
+        <div className="max-w-7xl mx-auto px-6 pt-6">
+          <picture>
+            <source media="(max-width: 700px)" srcSet={bannerCel} />
+            <img
+              src={bannerCompu}
+              alt="Banner"
+              className="w-full h-64 md:h-80 lg:h-96 object-cover rounded-2xl"
+            />
+          </picture>
+        </div>
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6 p-4 md:p-6">
+          <div className="w-full lg:w-64 flex flex-col gap-6 lg:sticky lg:top-6 lg:self-start shrink-0">
             <SideBar />
           </div>
           <main className="w-full flex-1 min-w-0">

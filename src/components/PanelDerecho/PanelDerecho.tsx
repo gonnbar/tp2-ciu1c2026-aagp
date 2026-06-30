@@ -2,7 +2,7 @@ import hashtag from "../../assets/hashtag_secondary_light.svg";
 
 function PanelDerecho() {
   return (
-    <aside className="w-full lg:w-72 xl:w-80 shrink-0">
+    <aside className="w-full lg:w-64 xl:w-80 shrink-0">
       <div className="flex flex-col sm:flex-row lg:flex-col gap-6">
         <div className="flex-1 rounded-2xl bg-surface shadow-md p-5 md:p-6">
           <h2 className="text-lg md:text-xl font-bold text-text mb-4">
