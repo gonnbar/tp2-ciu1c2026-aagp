@@ -36,25 +36,8 @@ function Profile() {
             <SideBar />
           </div>
           <div>
-            <Link
-              to="/create-post"
-              state={{ backgroundLocation: location }}
-              className="        
-                inline-flex
-                items-center
-                justify-center
-                bg-primary
-                hover:bg-primaryDark
-                text-white
-                font-medium
-                px-5
-                py-3
-                rounded-xl
-                transition
-              ">
-            </Link>
-              <div
-                className="
+            <div
+              className="
                   flex
                   flex-wrap
                   justify-between
@@ -64,20 +47,21 @@ function Profile() {
                   border-b
                   border-border
                 "
-              >
-                <div>
-                  <h1 className="text-2xl font-bold text-text">
-                    {user?.nickname}
-                  </h1>
+            >
+              <div>
+                <h1 className="text-2xl font-bold text-text">
+                  {user?.nickname}
+                </h1>
 
-                  <p className="text-sm text-text-secondary mt-1">
-                    {posts.length} publicaciones
-                  </p>
-                </div>
+                <p className="text-sm text-text-secondary mt-1">
+                  {posts.length} publicaciones
+                </p>
+              </div>
 
-                <Link
-                  to="/create-post"
-                  className="
+              <Link
+                to="/create-post"
+                state={{ backgroundLocation: location }}
+                className="
                     inline-flex
                     items-center
                     justify-center
@@ -92,41 +76,41 @@ function Profile() {
                     w-full
                     sm:w-auto
                   "
-                >
-                  + Nueva publicación
-                </Link>
-              </div>
-              <div className="pt-6 space-y-4">
-                {posts.length === 0 ? (
-                  <div
-                    className="
+              >
+                + Nuevo post
+              </Link>
+            </div>
+            <div className="pt-6 space-y-4">
+              {posts.length === 0 ? (
+                <div
+                  className="
                       py-12
                       text-center
                       text-text-secondary
                     "
-                  >
-                    <p>Aún no hay publicaciones.</p>
-                  </div>
-                ) : (
-                  [...posts].reverse().map((post) => (
-                    <PostCard key={post._id} post={post} />
-                  )))
-                }
-              </div>
+                >
+                  <p>Aún no hay publicaciones.</p>
+                </div>
+              ) : (
+                [...posts].reverse().map((post) => (
+                  <PostCard key={post._id} post={post} />
+                )))
+              }
             </div>
           </div>
+        </div>
 
-          <div
-            className="
+        <div
+          className="
               w-full
               lg:w-64
               shrink-0
             "
-          >
-            <PanelDerecho />
-          </div>
+        >
+          <PanelDerecho />
         </div>
       </div>
+    </div>
   );
 }
 

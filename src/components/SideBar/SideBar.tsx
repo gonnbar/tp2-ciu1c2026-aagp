@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/UserContext";
 import logo from '../../assets/logoBienvenida.png';
 import {
@@ -10,6 +10,7 @@ import {
 
 function SideBar() {
     const { logout } = useAuth();
+    const location = useLocation();
 
     return (
         <aside className="hidden lg:block w-64">
@@ -26,7 +27,7 @@ function SideBar() {
                         <span className="group-hover:text-primary transition">Mi Perfil</span>
                     </Link>
 
-                    <Link to="/create-post" className="group flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-secondary/20 cursor-pointer">
+                    <Link to="/create-post" state={{ backgroundLocation: location }} className="group flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-secondary/20 cursor-pointer">
                         <HiPlusCircle className="w-5 h-5 transition group-hover:text-primary" />
                         <span className="group-hover:text-primary transition">Nueva Publicación</span>
                     </Link>

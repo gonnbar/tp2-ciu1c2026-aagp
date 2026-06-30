@@ -4,14 +4,15 @@ import { useAuth } from "../context/UserContext";
 import { createPost, createPostImage } from "../services/posts";
 import { getTags } from "../services/tags";
 import type { Tag } from "../types/Tag";
-import Toast from "../components/Toast/Toast";
-import SideBar from "../components/SideBar/SideBar";
-import PanelDerecho from "../components/PanelDerecho/PanelDerecho";
+//import SideBar from "../components/SideBar/SideBar";
+//import PanelDerecho from "../components/PanelDerecho/PanelDerecho";
+import { useToast } from "../context/ToastContext";
+
 
 function CreatePost() {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [message, setMessage] = useState("");
+  const { mostrarToast } = useToast();
   const [texto, setTexto] = useState("");
   const [images, setImages] = useState<string[]>([""]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -48,7 +49,7 @@ function CreatePost() {
       setSelectedTags([...selectedTags, tagId]);
     }
   };
-  
+
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!user?._id) return;
@@ -73,10 +74,8 @@ function CreatePost() {
           postId: post._id,
         });
       }
-      setMessage("Se publicó el post.");
-      setTimeout(() => {
-        navigate(-1);
-      }, 2000);
+      mostrarToast("Se publicó el post.");
+      navigate(-1);
     } catch (error) {
       console.error(error);
       alert("No se pudo publicar el post.");
@@ -85,8 +84,6 @@ function CreatePost() {
 
   return (
     <>
-      {message && <Toast message={message} />}
-
       <div
         className="
                 fixed

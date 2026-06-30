@@ -1,12 +1,8 @@
-import {
-    createContext,
-    useContext,
-    useState
-} from "react";
+import { createContext, useContext, useState } from "react";
 import Toast from "../components/Toast/Toast";
 
 type ToastContextType = {
-    showToast: (message: string) => void;
+    mostrarToast: (message: string) => void;
 };
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -14,8 +10,8 @@ const ToastContext = createContext<ToastContextType | undefined>(undefined);
 export function ToastProvider({ children }: { children: React.ReactNode }) {
     const [message, setMessage] = useState("");
 
-    const showToast = (message: string) => {
-        setMessage(message);
+    const mostrarToast = (newMessage: string) => {
+        setMessage(newMessage);
 
         setTimeout(() => {
             setMessage("");
@@ -23,7 +19,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     };
 
     return (
-        <ToastContext.Provider value={{ showToast }}>
+        <ToastContext.Provider value={{ mostrarToast }}>
             {children}
             <Toast message={message} />
         </ToastContext.Provider>
