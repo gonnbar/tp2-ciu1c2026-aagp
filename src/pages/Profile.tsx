@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/UserContext";
-import { Link } from "react-router-dom";
-//import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getUserPosts } from "../services/profile";
 import type { Post } from "../types/Post";
 function Profile() {
   const { user } = useAuth();
   const [posts, setPosts] = useState<Post[]>([]);
-  // const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (!user?._id) return;
@@ -32,6 +31,7 @@ function Profile() {
           <div>
             <Link
               to="/create-post"
+              state={{ backgroundLocation: location }}
               className="        
                 inline-flex
                 items-center
