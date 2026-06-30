@@ -9,12 +9,8 @@ import {
 } from "react-icons/hi2";
 
 function SideBar() {
-<<<<<<< HEAD
     const { logout } = useAuth();
     const location = useLocation();
-=======
-  const { logout } = useAuth();
->>>>>>> b9ef55cfe0ea8fe2fdedc20c4a84e4e45b2a7f68
 
   return (
     <aside className="hidden lg:block w-64">
