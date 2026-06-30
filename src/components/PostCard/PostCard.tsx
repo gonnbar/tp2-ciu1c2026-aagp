@@ -8,7 +8,6 @@ type PostCardProps = {
 };
 
 function PostCard({ post }: PostCardProps) {
-  console.log(post.images);
   return (
     <div className="mb-6 rounded-xl bg-surface p-5 shadow-md">
       <div className="flex flex-col md:flex-row gap-6">

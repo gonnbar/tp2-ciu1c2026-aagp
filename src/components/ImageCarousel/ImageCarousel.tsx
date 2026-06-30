@@ -9,21 +9,7 @@ export default function ImageCarousel({ images }: Props) {
   const [currentImage, setCurrentImage] = useState(0);
 
   if (images.length === 0) {
-    return (
-      <div
-        className="
-          bg-gray-50
-          rounded-2xl
-          py-16
-          text-center
-          text-text-secondary
-        "
-      >
-        <div className="text-5xl mb-4">🖼️</div>
-
-        <p>Esta publicación no tiene imágenes.</p>
-      </div>
-    );
+    return null;
   }
 
   function previousImage() {
