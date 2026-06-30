@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Profile from "./pages/Profile";
 import CreatePost from "./pages/CreatePost";
 import type { Location } from "react-router-dom";
+import ForgotPass from "./pages/ForgotPass";
 
 function App() {
   const location = useLocation();
@@ -28,6 +29,9 @@ function App() {
           <Route path="/register" element={<Register />} />
 
           <Route path="/about" element={<About />} />
+        <Route path="/forgot-pass" element={<ForgotPass />} />
+
+        <Route path="/about" element={<About />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="/home" element={<Home />} />

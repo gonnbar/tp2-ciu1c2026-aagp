@@ -91,7 +91,7 @@ export default function PostDetail() {
             <div
               className="
                 bg-white
-                rounded-3xl
+                rounded-2xl
                 shadow-md
                 p-5
                 md:p-8

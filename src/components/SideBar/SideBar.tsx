@@ -1,42 +1,48 @@
 import { Link } from "react-router-dom";
-import edit from '../../assets/edit.svg';
-import user from '../../assets/user.svg';
-import login from '../../assets/exit.svg';
-import home from '../../assets/home.svg';
-import logo from '../../assets/logoBienvenida.png';
 import { useAuth } from "../../context/UserContext";
-import { useState } from "react";
+import logo from '../../assets/logoBienvenida.png';
+import {
+  HiHome,
+  HiUser,
+  HiPlusCircle,
+  HiArrowRightOnRectangle,
+} from "react-icons/hi2";
 
 function SideBar() {
     const { logout } = useAuth();
-    const [menuOpen, setMenuOpen] = useState(false);
+
     return (
-        <aside className="relative lg:w-64">
-            <button onClick={() => setMenuOpen(!menuOpen)}className="lg:hidden mb-3 rounded-lg bg-surface p-3 shadow-md text-text"> ☰</button>
-            <div className={`bg-surface rounded-xl shadow-md p-4 transition-all duration-300 lg:block ${menuOpen ? "block" : "hidden"}`}>
-                <nav className="flex flex-col gap-4">
-                    <Link  to="/home" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-3 rounded-lg px-4 py-2 text-text hover:bg-primary hover:text-white">
-                        <img src={home} alt="Inicio" className="w-5 h-5" />
-                        <span>Inicio</span>
+        <aside className="hidden lg:block w-64">
+            <div className="bg-surface rounded-xl shadow-md pt-6 pb-5 px-4">
+                <nav className="flex flex-col gap-3">
+
+                    <Link to="/home" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="group flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-secondary/20 cursor-pointer">
+                        <HiHome className="w-5 h-5 transition group-hover:text-primary" />
+                        <span className="group-hover:text-primary transition">Inicio</span>
                     </Link>
-                    <Link to="" className="flex items-center gap-3 rounded-lg px-4 py-2 text-text hover:bg-primary hover:text-white">
-                        <img src={user} alt="Perfil" className="w-5 h-5" />
-                        <span>Mi Perfil</span>
+
+                    <Link to="/profile" className="group flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-secondary/20 cursor-pointer">
+                        <HiUser className="w-5 h-5 transition group-hover:text-primary" />
+                        <span className="group-hover:text-primary transition">Mi Perfil</span>
                     </Link>
-                    <Link to="" className="flex items-center gap-3 rounded-lg px-4 py-2 text-text hover:bg-primary hover:text-white">
-                        <img src={edit} alt="Nueva publicación" className="w-5 h-5" />
-                        <span>Nueva Publicación</span>
+
+                    <Link to="/create-post" className="group flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-secondary/20 cursor-pointer">
+                        <HiPlusCircle className="w-5 h-5 transition group-hover:text-primary" />
+                        <span className="group-hover:text-primary transition">Nueva Publicación</span>
                     </Link>
-                    <button onClick={logout}className="flex items-center gap-3 rounded-lg px-4 py-2 text-text hover:bg-primary hover:text-white">
-                        <img src={login} alt="Cerrar sesión" className="w-5 h-5" />
-                        <span>Cerrar Sesión</span>
+
+                    <button onClick={logout} className="group flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-secondary/20 cursor-pointer">
+                        <HiArrowRightOnRectangle className="w-5 h-5 transition group-hover:text-primary" />
+                        <span className="group-hover:text-primary transition">Cerrar Sesión</span>
                     </button>
-                    <div className="flex justify-center mb-6">
-                    <img src={logo} alt="Logo" className="w-32 h-auto"/>
-                </div>
+
+                    <div className="mt-6 flex justify-center">
+                        <img src={logo} alt="Logo" className="w-32 h-auto"/>
+                    </div>
                 </nav>
             </div>
         </aside>
     );
 }
+
 export default SideBar;
