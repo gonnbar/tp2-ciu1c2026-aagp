@@ -32,43 +32,48 @@ function Home() {
 
   return (
     <div className="bg-background min-h-screen">
-      <div className="relative">
-        <div className="max-w-7xl mx-auto px-6 pt-6">
-          <picture>
-            <source media="(max-width: 700px)" srcSet={bannerCel} />
-            <img
-              src={bannerCompu}
-              alt="Banner"
-              className="w-full h-64 md:h-80 lg:h-96 object-cover rounded-2xl"
-            />
-          </picture>
-        </div>
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6 p-4 md:p-6">
-          <div className="w-full lg:w-64 flex flex-col gap-6 lg:sticky lg:top-6 lg:self-start shrink-0">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
+        <div className="flex flex-col lg:flex-row gap-6 items-start">
+          <aside className="w-full lg:w-64 shrink-0 lg:sticky lg:top-6 self-start">
             <SideBar />
+          </aside>
+          <div className="flex-1 min-w-0">
+            <picture>
+              <source media="(max-width: 700px)" srcSet={bannerCel} />
+              <img
+                src={bannerCompu}
+                alt="Banner"
+                className="w-full h-auto rounded-2xl"
+              />
+            </picture>
+            <div className="flex flex-col xl:flex-row gap-6 mt-6 items-start">
+              <main className="flex-1 min-w-0">
+                <h2 className="text-xl md:text-2xl font-bold text-text mb-6">
+                  Publicaciones recientes
+                </h2>
+
+                {posts.length === 0 ? (
+                  <div
+                    className="
+                    flex
+                    flex-col
+                    items-center
+                    py-20
+                    text-text-secondary
+                  "
+                  >
+                    <p>No hay publicaciones todavía.</p>
+                  </div>
+                ) : (
+                  posts.map((post) => <PostCard key={post._id} post={post} />)
+                )}
+              </main>
+
+              <aside className="w-full xl:w-72 shrink-0">
+                <PanelDerecho />
+              </aside>
+            </div>
           </div>
-          <main className="w-full flex-1 min-w-0">
-            <h2 className="text-xl md:text-2xl font-bold text-text mb-6">
-              Publicaciones recientes
-            </h2>
-            {posts.length === 0 ? (
-              <div
-                className="
-                  flex
-                  flex-col
-                  items-center
-                  py-20
-                  text-text-secondary
-                "
-              >
-                <span className="text-5xl mb-4">👻</span>//cambiar por svg
-                <p>No hay publicaciones todavía.</p>
-              </div>
-            ) : (
-              posts.map((post) => <PostCard key={post._id} post={post} />)
-            )}
-          </main>
-          <PanelDerecho />
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { User } from "../types/User"
-import logo from "../assets/imageLOGO.png"
+import logo from "../assets/logo.png"
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
@@ -25,7 +25,6 @@ export default function ForgotPassword() {
     setError("");
 
     try {
-      // Buscar usuario
       const usersRes = await fetch("http://localhost:3000/users");
       const users = await usersRes.json();
 
@@ -38,7 +37,6 @@ export default function ForgotPassword() {
         return;
       }
 
-      // Obtener datos completos
       const userRes = await fetch(
         `http://localhost:3000/users/${foundUser._id}`
       );
@@ -108,18 +106,18 @@ export default function ForgotPassword() {
   return (
     <div className="flex min-h-ful flex-col justify-center px-6 py-12 lg:px-8">
 
-      <div className="rounded-2xl bg-white p-6 shadow-md flex flex-col justify-center px-4 py-6 lg:px-5 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="mx-auto w-full max-w-md rounded-xl bg-white shadow-lg px-6 py-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
 
           <img src={logo} alt="Logo UnaHur" className="mx-auto h-15 w-auto" />
-          <h2 className="mt-4 text-center text-2xl font-bold tracking-tight text-text">
+          <h2 className="mt-4 mb-6 text-center text-2xl font-bold tracking-tight text-text">
             Recuperar contraseña
           </h2>
 
           {step === 1 && (
             <form
               onSubmit={handleContinue}
-              className="p-6 flex flex-col gap-3"
+              className="p-6 flex flex-col gap-3 space-y-4"
             >
               <input
                 className="w-full border border-gray-300 rounded-lg p-2"
