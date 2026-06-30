@@ -7,8 +7,8 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import PostDetail from "./pages/PostDetail";
 import About from "./pages/About";
-//import Profile from "./pages/Profile";
-//import CreatePost from ".pages/CreatePost";
+import Profile from "./pages/Profile";
+import CreatePost from "./pages/CreatePost";
 
 function App() {
   return (
@@ -28,9 +28,9 @@ function App() {
 
           <Route path="/post/:id" element={<PostDetail />} />
 
-          {/*<Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} />
 
-          <Route path="/create-post" element={<CreatePost />} />*/}
+          <Route path="/create-post" element={<CreatePost />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
