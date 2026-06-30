@@ -7,7 +7,9 @@ import {
     getTags,
 } from "../services/createPost";
 import type { Tag } from "../types/Tag";
+import SideBar from "../components/SideBar/SideBar";
 // import Toast from "../components/Toast/Toast";
+import PanelDerecho from '../components/PanelDerecho/PanelDerecho'
 
 
 
@@ -122,6 +124,11 @@ function CreatePost() {
 
     return (
         <div className="min-h-screen bg-background p-6">
+             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6 items-start">
+                <aside className="w-full lg:w-64 lg:sticky lg:top-6">
+                <SideBar />
+            </aside>
+        <main className="flex-1">
             <form
                 onSubmit={handleSubmit}
                 className="max-w-2xl mx-auto bg-surface rounded-2xl shadow-md p-6 space-y-6"
@@ -207,6 +214,11 @@ function CreatePost() {
                     Publicar
                 </button>
             </form>
+            </main>
+             <aside className="w-full lg:w-72 lg:sticky lg:top-6">
+                <PanelDerecho />
+            </aside>
+        </div>
         </div>
     );
 }
