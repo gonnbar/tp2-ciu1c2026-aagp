@@ -56,22 +56,43 @@ function Profile() {
             <p className="text-textSecondary text-center py-10">
               Aún no hay publicaciones
             </p>
-          ) : (
-            posts.map((post) => (
-              <div
-                key={post._id}
-                className="border border-border rounded-xl p-4 space-y-2 bg-white"
-              >
-                <p className="text-text">{post.texto}</p>
-                <p className="text-xs text-textSecondary">
-                  Comentarios: {post.comments?.length ?? 0}
-                </p>
-                <Link to={`/post/${post._id}`} className="text-sm text-violet-600 hover:underline">
-                  Ver más
-                </Link>
-              </div>
-            ))
-          )}
+          )
+            : (
+              [...posts].reverse().map((post) => (
+                <div
+                  key={post._id}
+                  className="border border-border rounded-xl p-4 space-y-2 bg-white"
+                >
+                  <p className="text-text">{post.texto}</p>
+                  {post.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag._id}
+                          className="
+                            bg-secondary/20
+                            text-primary
+                            px-2
+                            py-1
+                            rounded-full
+                            text-xs
+                          "
+                        >
+                          #{tag.nombre}
+                        </span>
+                      ))}
+                    </div>
+                  )
+                  }
+                  <p className="text-xs text-textSecondary">
+                    Comentarios: {post.comments?.length ?? 0}
+                  </p>
+                  <Link to={`/post/${post._id}`} className="text-sm text-violet-600 hover:underline">
+                    Ver más
+                  </Link>
+                </div>
+              ))
+            )}
         </div>
       </div>
     </div>
