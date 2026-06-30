@@ -9,21 +9,7 @@ export default function ImageCarousel({ images }: Props) {
   const [currentImage, setCurrentImage] = useState(0);
 
   if (images.length === 0) {
-    return (
-      <div
-        className="
-          bg-gray-50
-          rounded-2xl
-          py-16
-          text-center
-          text-text-secondary
-        "
-      >
-        <div className="text-5xl mb-4">🖼️</div>
-
-        <p>Esta publicación no tiene imágenes.</p>
-      </div>
-    );
+    return null;
   }
 
   function previousImage() {
@@ -54,24 +40,22 @@ export default function ImageCarousel({ images }: Props) {
             className="
               absolute
               top-1/2
-              left-4
+              left-2
               -translate-y-1/2
-              w-12
-              h-12
+              w-11
+              h-11
+              md:w-10
+              md:h-10
               rounded-full
-              bg-black/75
+              bg-black/60
               text-white
-              text-3xl
-              font-light
               flex
               items-center
               justify-center
-              hover:bg-primary
-              hover:scale-105
-              transition
               shadow-lg
               cursor-pointer
-              opacity-0
+              z-20
+              xl:opacity-0
               group-hover:opacity-100
             "
           >
@@ -83,23 +67,22 @@ export default function ImageCarousel({ images }: Props) {
             className="
               absolute
               top-1/2
-              right-4
+              right-2
               -translate-y-1/2
-              w-12
-              h-12
+              w-11
+              h-11
+              md:w-10
+              md:h-10
               rounded-full
-              bg-black/75
+              bg-black/60
               text-white
-              text-3xl
               flex
               items-center
               justify-center
-              hover:bg-primary
-              hover:scale-105
-              transition
               shadow-lg
               cursor-pointer
-              opacity-0
+              z-20
+              xl:opacity-0
               group-hover:opacity-100
             "
           >
