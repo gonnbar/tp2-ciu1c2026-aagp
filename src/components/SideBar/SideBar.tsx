@@ -23,7 +23,7 @@ function SideBar() {
                         <img src={user} alt="Perfil" className="w-5 h-5" />
                         <span>Mi Perfil</span>
                     </Link>
-                    <Link to="" className="flex items-center gap-3 rounded-lg px-4 py-2 text-text hover:bg-primary hover:text-white">
+                    <Link to="/create-post" className="flex items-center gap-3 rounded-lg px-4 py-2 text-text hover:bg-primary hover:text-white">
                         <img src={edit} alt="Nueva publicación" className="w-5 h-5" />
                         <span>Nueva Publicación</span>
                     </Link>
