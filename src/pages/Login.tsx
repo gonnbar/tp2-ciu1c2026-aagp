@@ -69,7 +69,7 @@ export default function LoginForm() {
 
               <button
                 type="button"
-                onClick={() => navigate("/forgot-password")}
+                onClick={() => navigate("/forgot-pass")}
                 className="text-violet-600 hover:text-violet-700 text-xs hover:underline"
               >
                 ¿Olvidaste tu contraseña?

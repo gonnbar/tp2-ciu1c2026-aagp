@@ -1,14 +1,13 @@
-import comentario from "../../assets/comentario.svg";
 import { Link } from "react-router-dom";
 import { formatPostDate } from "../../utils/date";
 import type { Post } from "../../types/Post";
+import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2";
 
 type PostCardProps = {
   post: Post;
 };
 
 function PostCard({ post }: PostCardProps) {
-  console.log(post.images);
   return (
     <div className="mb-6 rounded-xl bg-surface p-5 shadow-md">
       <div className="flex flex-col md:flex-row gap-6">
@@ -86,7 +85,7 @@ function PostCard({ post }: PostCardProps) {
               text-text-secondary
             "
           >
-            <img src={comentario} alt="Comentarios" className="w-4 h-4" />
+            <HiOutlineChatBubbleOvalLeft className="w-5 h-5 text-primary-dark stroke-2" />
 
             <span>
               {post.comments.length}{" "}

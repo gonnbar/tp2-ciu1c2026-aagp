@@ -12,3 +12,9 @@ export type Post = {
   images: Image[];
   comments: Comment[];
 };
+
+export type CreatePost = {
+  texto: string;
+  tags: Tag[];
+  images: Image[];
+};
