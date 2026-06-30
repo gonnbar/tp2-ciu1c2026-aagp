@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useAuth } from "../context/UserContext";
-import logo from "../assets/imageLOGO.png"
+import logo from "../assets/logo.png"
 
 export default function LoginForm() {
   const { login, isAuthenticated } = useAuth();
@@ -29,7 +29,7 @@ export default function LoginForm() {
   return (
 
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="bg-white rounded-2xl p-6 shadow-md flex flex-col justify-center px-4 py-6 lg:px-5 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="mx-auto w-full max-w-md rounded-xl bg-white shadow-lg px-6 py-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img src={logo} alt="Logo UnaHur" className="mx-auto h-15 w-auto" />
           <h2 className="mt-4 text-center text-2xl font-bold tracking-tight text-text"> Iniciar sesión </h2>
@@ -41,7 +41,7 @@ export default function LoginForm() {
             </p>
           )}
 
-          <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-3">
+          <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-3 space-y-4">
             <input
               className="w-full border border-gray-300 rounded-lg p-2"
               type="text"
