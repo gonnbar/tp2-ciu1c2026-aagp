@@ -5,6 +5,7 @@ import { getUserPosts } from "../services/profile";
 import type { Post } from "../types/Post";
 import SideBar from "../components/SideBar/SideBar";
 import PanelDerecho from "../components/PanelDerecho/PanelDerecho";
+import PostCard from "../components/PostCard/PostCard";
 
 function Profile() {
   const { user } = useAuth();
@@ -100,77 +101,9 @@ function Profile() {
                   </div>
                 ) : (
                   [...posts].reverse().map((post) => (
-                    <div
-                      key={post._id}
-                      className="
-                        w-full
-                        border
-                        border-border
-                        rounded-2xl
-                        p-5
-                        bg-white
-                        flex
-                        flex-col
-                        gap-4
-                      "
-                    >
-                      <p
-                        className="
-                          text-text
-                          leading-relaxed
-                        "
-                      >
-                        {post.texto}
-                      </p>
-
-                      {post.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-2">
-                          {post.tags.map((tag) => (
-                            <span
-                              key={tag._id}
-                              className="
-                                bg-secondary/20
-                                text-primary
-                                px-3
-                                py-1
-                                rounded-full
-                                text-xs
-                                font-medium
-                              "
-                            >
-                              #{tag.nombre}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-
-                      <p className="text-sm text-text-secondary">
-                        {post.comments.length}{" "}
-                        {post.comments.length === 1
-                          ? "comentario"
-                          : "comentarios"}
-                      </p>
-
-                      <div className="flex justify-end pt-2">
-                        <Link
-                          to={`/post/${post._id}`}
-                          className="
-                            rounded-xl
-                            bg-primary
-                            hover:bg-primary-dark
-                            text-white
-                            px-5
-                            py-2.5
-                            transition
-                            text-sm
-                          "
-                        >
-                          Ver más
-                        </Link>
-                      </div>
-                    </div>
-                  ))
-                )}
+                    <PostCard key={post._id} post={post} />
+                  )))
+                }
               </div>
             </div>
           </main>

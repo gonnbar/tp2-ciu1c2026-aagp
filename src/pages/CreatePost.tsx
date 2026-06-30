@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/UserContext";
-import { createPost, createPostImage, getTags } from "../services/createPost";
+import { createPost, createPostImage } from "../services/posts";
+import { getTags } from "../services/tags";
 import type { Tag } from "../types/Tag";
 import SideBar from "../components/SideBar/SideBar";
 // import Toast from "../components/Toast/Toast";
@@ -20,7 +21,7 @@ function CreatePost() {
   const [publicado, setPublicado] = useState(false);
 
   useEffect(() => {
-    const fetchTags = async () => {
+    const cargarTags = async () => {
       try {
         const tags = await getTags();
         setAllTags(tags);
@@ -28,7 +29,7 @@ function CreatePost() {
         console.error(error);
       }
     };
-    fetchTags();
+    cargarTags();
   }, []);
 
   const handleImageChange = (index: number, value: string) => {
