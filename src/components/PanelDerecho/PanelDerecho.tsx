@@ -23,7 +23,7 @@ function PanelDerecho() {
   const tagsVisibles = showAll ? tags : tags.slice(0, 5);
 
   return (
-    <aside className="hidden lg:block lg:w-64 xl:w-80 shrink-0">
+    <aside className="hidden lg:block  w-full">
       <div className="flex flex-col gap-6">
 
         <div className="rounded-2xl bg-surface shadow-md p-6">
