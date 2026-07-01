@@ -71,7 +71,7 @@ export default function PostDetail() {
   }
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen">
       <div className="max-w-7xl mx-auto px-6 py-6">
         <div className="flex flex-col lg:flex-row items-start gap-6">
           <div
@@ -87,12 +87,15 @@ export default function PostDetail() {
             <SideBar />
           </div>
 
-          <main className="flex-1 min-w-0">
+          <main className="flex-1 min-w-0  w-full">
             <div
               className="
-                bg-white
+                w-full
+                bg-[var(--surface-soft)]
+                shadow-[0_12px_40px_rgba(109,66,216,.07)]
+                border
+                border-[#F2ECFF]
                 rounded-2xl
-                shadow-md
                 p-5
                 md:p-8
               "
@@ -162,7 +165,7 @@ export default function PostDetail() {
                 </div>
               )}
 
-              <ImageCarousel images={post.images} />
+              {post.images.length > 0 && <ImageCarousel images={post.images} />}
 
               <div className="mt-12">
                 <h2

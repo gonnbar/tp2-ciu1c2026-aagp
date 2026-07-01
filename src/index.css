@@ -20,7 +20,19 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #F7F7FA;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(109,66,216,.06), transparent 350px),
+    radial-gradient(circle at 85% 15%, rgba(209,107,165,.05), transparent 300px),
+    radial-gradient(circle at 50% 100%, rgba(185,154,245,.06), transparent 500px),
+    linear-gradient(
+      180deg,
+      #faf9fd 0%,
+      #f7f4ff 50%,
+      #f3efff 100%
+    );
+  background-image:
+    radial-gradient(circle, rgba(109,66,216,.05) 1px, transparent 9px);
+  background-size: 40px 40px;  
   color: #242424;
 }
 
@@ -30,4 +42,5 @@ body {
 
 #root {
   min-height: 100vh;
+  --surface-soft:#fbfafd;
 }

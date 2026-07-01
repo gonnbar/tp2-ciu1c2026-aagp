@@ -31,7 +31,7 @@ function Home() {
   }
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
         <div className="flex flex-col lg:flex-row gap-6 items-start">
           <aside className="w-full lg:w-64 shrink-0 lg:sticky lg:top-6 self-start">
@@ -65,7 +65,9 @@ function Home() {
                     <p>No hay publicaciones todavía.</p>
                   </div>
                 ) : (
-                  posts.map((post) => <PostCard key={post._id} post={post} />)
+                  [...posts]
+                    .reverse()
+                    .map((post) => <PostCard key={post._id} post={post} />)
                 )}
               </main>
 
