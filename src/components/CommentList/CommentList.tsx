@@ -1,5 +1,6 @@
 import type { Comment } from "../../types/Comment";
 import { formatPostDate } from "../../utils/date";
+import { getAvatarUrl } from "../../utils/avatar";
 
 type Props = {
   comments: Comment[];
@@ -31,8 +32,8 @@ export default function CommentList({ comments }: Props) {
           "
         >
           <img
-            src={`https://i.pravatar.cc/50?u=${comment.userId._id}`}
-            alt="avatar"
+            src={getAvatarUrl(comment.userId.nickname)}
+            alt={comment.userId.nickname}
             className="
               w-10
               h-10

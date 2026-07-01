@@ -13,7 +13,7 @@ export function Layout() {
   const location = useLocation();
   const { logout } = useAuth();
 
-  const ocultarLayout = ["/", "/login", "/register", "/profile", "/forgot-pass"].includes(
+  const ocultarLayout = ["/", "/login", "/register", "/forgot-pass"].includes(
     location.pathname,
   );
 
@@ -39,7 +39,7 @@ export function Layout() {
             }
             className="
               fixed
-              bottom-20
+              bottom-25
               right-4
               rounded-full
               bg-primary

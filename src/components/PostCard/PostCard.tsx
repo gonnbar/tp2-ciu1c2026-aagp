@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { formatPostDate } from "../../utils/date";
 import type { Post } from "../../types/Post";
 import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2";
+import { getAvatarUrl } from "../../utils/avatar";
 
 type PostCardProps = {
   post: Post;
@@ -14,7 +15,7 @@ function PostCard({ post }: PostCardProps) {
         <div className="flex-1 flex flex-col">
           <div className="flex items-center gap-3 mb-4">
             <img
-              src={`https://i.pravatar.cc/80?u=${post.user.nickname}`}
+              src={getAvatarUrl(post.user.nickname)}
               alt={post.user.nickname}
               className="
                 w-11

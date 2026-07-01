@@ -3,8 +3,6 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/UserContext";
 import logoBienvenida from "../assets/logoBienvenida.png";
 
-//  <h1 className="tracking-wider"> Bienvenido a </h1>
-
 export default function Welcome() {
   const { isAuthenticated } = useAuth();
 
