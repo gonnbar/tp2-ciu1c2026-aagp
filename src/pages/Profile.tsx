@@ -6,7 +6,6 @@ import SideBar from "../components/SideBar/SideBar";
 import PanelDerecho from "../components/PanelDerecho/PanelDerecho";
 import PostCard from "../components/PostCard/PostCard";
 import bannerPerfil from "../assets/banner_profile.png";
-//import avatar from "../assets/avatar.jpg";
 import { getAvatarUrl } from "../utils/avatar";
 
 function Profile() {
@@ -21,7 +20,7 @@ function Profile() {
   }, [user]);
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen">
       <div className="max-w-7xl mx-auto px-6 py-6">
         <div className="flex flex-col lg:flex-row items-start gap-6">
           <div
@@ -38,7 +37,17 @@ function Profile() {
           </div>
 
           <div className="flex-1 min-w-0">
-            <div className="bg-white rounded-3xl shadow-md overflow-hidden">
+            <div 
+               className="
+                bg-[var(--surface-soft)]
+                backdrop-blur-md
+                border
+                border-[#F2ECFF]
+                rounded-2xl
+                shadow-[0_12px_40px_rgba(109,66,216,.07)]
+                overflow-hidden
+              "
+            >
               <img
                 src={bannerPerfil}
                 alt="Banner perfil"
@@ -56,7 +65,7 @@ function Profile() {
                     h-28
                     rounded-full
                     border-4
-                    border-white
+                    border-[#F2ECFF]
                     object-cover
                     shadow-md
                   "
@@ -96,7 +105,7 @@ function Profile() {
               </div>
 
               <div className="px-8 pb-8">
-                <div className="border-t border-border pt-8 space-y-4">
+                <div className="border-t border-[#F2ECFF] pt-8 space-y-4">
                   {posts.length === 0 ? (
                     <div className="py-12 text-center text-text-secondary">
                       <p>Aún no hay publicaciones.</p>

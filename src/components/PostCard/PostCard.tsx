@@ -9,10 +9,26 @@ type PostCardProps = {
 };
 
 function PostCard({ post }: PostCardProps) {
+  const hasImages = post.images.length > 0;
+
   return (
-    <div className="mb-6 rounded-xl bg-surface p-5 shadow-md">
-      <div className="flex flex-col md:flex-row gap-6">
-        <div className="flex-1 flex flex-col">
+    <div 
+      className="
+        mb-6 
+        rounded-2xl
+        bg-[var(--surface-soft)]
+        shadow-[0_12px_40px_rgba(109,66,216,.07)]
+        border
+        border-[#F2ECFF] 
+        p-5 
+      "
+    >
+      <div
+        className={
+          hasImages ? "flex flex-col md:flex-row gap-6" : "flex flex-col"
+        }
+      >
+        <div className="flex-1">
           <div className="flex items-center gap-3 mb-4">
             <img
               src={getAvatarUrl(post.user.nickname)}
@@ -30,22 +46,11 @@ function PostCard({ post }: PostCardProps) {
             />
 
             <div>
-              <h3
-                className="
-                  text-lg
-                  font-semibold
-                  text-text
-                "
-              >
+              <h3 className="text-lg font-semibold text-text">
                 {post.user.nickname}
               </h3>
 
-              <p
-                className="
-                  text-sm
-                  text-text-secondary
-                "
-              >
+              <p className="text-sm text-text-secondary">
                 {formatPostDate(post.fecha)}
               </p>
             </div>
@@ -56,7 +61,7 @@ function PostCard({ post }: PostCardProps) {
           </p>
 
           {post.tags.length > 0 && (
-            <div className="mb-4 flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <span
                   key={tag._id}
@@ -75,49 +80,22 @@ function PostCard({ post }: PostCardProps) {
               ))}
             </div>
           )}
-
-          <div
-            className="
-              mt-auto
-              pt-6
-              flex
-              items-center
-              gap-2
-              text-text-secondary
-            "
-          >
-            <HiOutlineChatBubbleOvalLeft className="w-5 h-5 text-primary-dark stroke-2" />
-
-            <span>
-              {post.comments.length}{" "}
-              {post.comments.length === 1 ? "comentario" : "comentarios"}
-            </span>
-          </div>
         </div>
 
-        <div
-          className="
-            flex 
-            flex-col
-            justify-between
-            items-center
-            w-full
-            md:w-auto
-          "
-        >
-          {post.images.length > 0 ? (
+        {hasImages && (
+          <div className="w-full md:w-80 shrink-0">
             <div className="relative">
               <img
                 src={post.images[0].url}
                 alt="Publicación"
                 className="
                   w-full
-                  max-w-sm
                   h-48
                   object-cover
                   rounded-lg
                 "
               />
+
               {post.images.length > 1 && (
                 <span
                   className="
@@ -137,31 +115,47 @@ function PostCard({ post }: PostCardProps) {
                 </span>
               )}
             </div>
-          ) : (
-            <div className="flex-1" />
-          )}
+          </div>
+        )}
+      </div>
 
-          <Link
-            to={`/post/${post._id}`}
-            className="
-              mt-4
-              md:mt-6
-              self-end
-              rounded-xl
-              bg-primary
-              px-5
-              py-2.5
-              text-white
-              hover:bg-primary-dark
-              transition
-              text-center
-              w-full
-              sm:w-auto
-            "
-          >
-            Ver más
-          </Link>
+      <div
+        className="
+          mt-6
+          flex
+          flex-col
+          gap-4
+          sm:flex-row
+          sm:items-center
+          sm:justify-between
+        "
+      >
+        <div className="flex items-center gap-2 text-text-secondary">
+          <HiOutlineChatBubbleOvalLeft className="w-5 h-5 text-primary-dark stroke-2" />
+
+          <span>
+            {post.comments.length}{" "}
+            {post.comments.length === 1 ? "comentario" : "comentarios"}
+          </span>
         </div>
+
+        <Link
+          to={`/post/${post._id}`}
+          className="
+            w-full
+            sm:w-auto
+            text-center
+            rounded-xl
+            bg-primary
+            px-5
+            py-2.5
+            text-white
+            hover:bg-primary-dark
+            transition
+          "
+        >
+          Ver más
+        </Link>
       </div>
     </div>
   );

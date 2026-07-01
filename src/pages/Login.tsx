@@ -28,11 +28,11 @@ export default function LoginForm() {
 
   return (
 
-    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="mx-auto w-full max-w-md rounded-xl bg-white shadow-lg px-6 py-8">
+    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 pt-30">
+      <div className="mx-auto w-full max-w-md rounded-xl bg-[var(--surface-soft)] shadow-lg px-6 py-8 ">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img src={logo} alt="Logo UnaHur" className="mx-auto h-15 w-auto" />
-          <h2 className="mt-4 text-center text-2xl font-bold tracking-tight text-text"> Iniciar sesión </h2>
+          <h2 className="mt-6 text-center text-2xl font-bold tracking-tight text-text"> Iniciar sesión </h2>
         </div>
         <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
           {error && (
@@ -43,14 +43,14 @@ export default function LoginForm() {
 
           <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-3 space-y-4">
             <input
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full rounded-md border border-border bg-surface p-2 text-text outline-none focus:border-primary"
               type="text"
               placeholder="Nickname"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
             />
             <input
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full rounded-md border border-border bg-surface p-2 text-text outline-none focus:border-primary"
               type="password"
               placeholder="Contraseña"
               value={password}
@@ -62,29 +62,29 @@ export default function LoginForm() {
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="h-4 w-4 rounded border-gray-300 text-violet-600 focus:ring-violet-500"
+                  className="h-4 w-4"
                 />
-                <span>Recordarme</span>
+                <span className="text-sm">Recordarme</span>
               </label>
 
               <button
                 type="button"
                 onClick={() => navigate("/forgot-pass")}
-                className="text-violet-600 hover:text-violet-700 text-xs hover:underline"
+                className="text-sm text-primary hover:text-primary-dark hover:underline cursor-pointer"
               >
                 ¿Olvidaste tu contraseña?
               </button>
             </div>
-            <button className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-lg"
+            <button className="bg-primary hover:bg-primary-dark text-white text-lg px-4 py-2 rounded-lg cursor-pointer"
               type="submit">
               Entrar
             </button>
-            <p className="mt-4 text-center text-xs text-gray-600">
+            <p className="text-center text-sm text-text-secondary">
               ¿No tenés una cuenta?{" "}
               <button
                 type="button"
                 onClick={() => navigate("/register")}
-                className="font-medium text-violet-600 hover:text-violet-700 hover:underline"
+                className="text-sm text-primary hover:text-primary-dark hover:underline cursor-pointer"
               >
                 Registrate
               </button>

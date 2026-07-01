@@ -104,13 +104,13 @@ export default function ForgotPassword() {
   }
 
   return (
-    <div className="flex min-h-ful flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="flex min-h-ful flex-col justify-center px-6 py-12 lg:px-8 pt-30">
 
-      <div className="mx-auto w-full max-w-md rounded-xl bg-white shadow-lg px-6 py-8">
+      <div className="mx-auto w-full max-w-md rounded-xl bg-[var(--surface-soft)] shadow-lg px-6 py-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
 
           <img src={logo} alt="Logo UnaHur" className="mx-auto h-15 w-auto" />
-          <h2 className="mt-4 mb-6 text-center text-2xl font-bold tracking-tight text-text">
+          <h2 className="mt-6 mb-6 text-center text-2xl font-bold tracking-tight text-text">
             Recuperar contraseña
           </h2>
 
@@ -120,7 +120,7 @@ export default function ForgotPassword() {
               className="p-6 flex flex-col gap-3 space-y-4"
             >
               <input
-                className="w-full border border-gray-300 rounded-lg p-2"
+                className="w-full rounded-md border border-border bg-surface p-2 text-text outline-none focus:border-primary"
                 type="text"
                 placeholder="Nickname"
                 value={nickname}
@@ -128,7 +128,7 @@ export default function ForgotPassword() {
               />
 
               <input
-                className="w-full border border-gray-300 rounded-lg p-2"
+                className="w-full rounded-md border border-border bg-surface p-2 text-text outline-none focus:border-primary"
                 type="email"
                 placeholder="Email"
                 value={email}
@@ -136,7 +136,7 @@ export default function ForgotPassword() {
               />
 
               <button
-                className="rounded-lg bg-violet-600 px-4 py-2 text-white hover:bg-violet-700"
+                className="bg-primary hover:bg-primary-dark text-white text-lg px-4 py-2 rounded-lg cursor-pointer"
               >
                 Continuar
               </button>

@@ -26,7 +26,16 @@ function PanelDerecho() {
     <aside className="hidden lg:block  w-full">
       <div className="flex flex-col gap-6">
 
-        <div className="rounded-2xl bg-surface shadow-md p-6">
+        <div 
+          className="
+            rounded-2xl
+            bg-[var(--surface-soft)]
+            shadow-[0_12px_40px_rgba(109,66,216,.07)]
+            border
+            border-[#F2ECFF]
+            p-6
+          "
+        >
           <h2 className="text-xl font-bold text-text mb-6">
             Etiquetas Populares
           </h2>
@@ -95,15 +104,24 @@ function PanelDerecho() {
           )}
         </div>
 
-        <div className="rounded-2xl bg-surface shadow-md p-6">
+        <div 
+          className="
+            rounded-2xl
+            bg-[var(--surface-soft)]
+            shadow-[0_12px_40px_rgba(109,66,216,.07)]
+            border
+            border-[#F2ECFF]
+            p-6
+          "
+        >
           <h2 className="text-xl font-bold text-text mb-4">
             UNAHUR
           </h2>
 
           <p className="text-sm text-text-secondary leading-relaxed">
             UnaHur Anti-Social Net es una red social diseñada exclusivamente
-            para los estudiantes de la Universidad Nacional de Hurlingham. Aquí
-            podés compartir publicaciones, hacer consultas, intercambiar
+            para los estudiantes de la Universidad Nacional de Hurlingham. 
+            Aquí podés compartir publicaciones, hacer consultas, intercambiar
             apuntes, debatir sobre materias, recomendar recursos y conectar con
             otros estudiantes de la comunidad. Buscamos crear un espacio donde
             el aprendizaje colaborativo y la participación sean los

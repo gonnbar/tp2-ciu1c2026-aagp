@@ -4,10 +4,8 @@ import { useAuth } from "../context/UserContext";
 import { createPost, createPostImage } from "../services/posts";
 import { getTags } from "../services/tags";
 import type { Tag } from "../types/Tag";
-//import SideBar from "../components/SideBar/SideBar";
-//import PanelDerecho from "../components/PanelDerecho/PanelDerecho";
 import { useToast } from "../context/ToastContext";
-
+import { HiOutlineXMark, HiOutlineTrash } from "react-icons/hi2";
 
 function CreatePost() {
   const { user } = useAuth();
@@ -41,6 +39,11 @@ function CreatePost() {
     if (images.length >= 4) return;
     setImages([...images, ""]);
   };
+
+  const removeImageField = (indexToRemove: number) => {
+    if (images.length <= 1) return;
+    setImages(images.filter((_,index) => index !== indexToRemove))
+  }
 
   const actualizarSelectedTags = (tagId: string) => {
     if (selectedTags.includes(tagId)) {
@@ -101,9 +104,9 @@ function CreatePost() {
         <form
           onSubmit={handleSubmit}
           onClick={(e) => e.stopPropagation()}
-          className="bg-surface rounded-2xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 space-y-6"
+          className="bg-[var(--surface-soft)] rounded-2xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 space-y-6 border border-[#F2ECFF]"
         >
-          <div className="flex justify-between items-center border-b border-border pb-4">
+          <div className="flex justify-between items-center border-b border-[#F2ECFF] pb-4">
             <h1 className="text-2xl font-bold">
               Crear nuevo post
             </h1>
@@ -112,12 +115,13 @@ function CreatePost() {
               type="button"
               onClick={() => navigate(-1)}
               className="
-                        text-2xl
-                        text-textSecondary
-                        hover:text-text
+                        text-3xl
+                        text-secondary
+                        hover:text-primary-dark
+                        cursor-pointer
                     "
             >
-              ✕
+              <HiOutlineXMark />
             </button>
           </div>
           <div>
@@ -131,7 +135,7 @@ function CreatePost() {
                 setErrorTexto("");
               }}
               placeholder="¿Qué estás pensando?..."
-              className="w-full border border-border rounded-lg p-3"
+              className="mb-2 w-full rounded-md border border-border bg-surface p-2 text-text outline-none focus:border-primary"
               rows={4}
             />
 
@@ -144,25 +148,37 @@ function CreatePost() {
             <label className="block mb-2 font-semibold">
               Imágenes
             </label>
-            <div className="space-y-2">
+            <div className="space-y-4">
               {images.map((image, index) => (
-                <input
-                  key={index}
-                  type="text"
-                  value={image}
-                  onChange={(e) =>
-                    handleImageChange(index, e.target.value)
-                  }
-                  placeholder="https://..."
-                  className="w-full border border-border rounded-lg p-2"
-                />
+                <div key={index} className="flex items-center gap-2 mb-2">
+                  <input
+                    type="text"
+                    value={image}
+                    onChange={(e) =>
+                      handleImageChange(index, e.target.value)
+                    }
+                    placeholder="https://..."
+                    className="w-full rounded-md border border-border bg-surface p-2 text-text outline-none focus:border-primary"
+                  />
+
+                  {images.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => removeImageField(index)} 
+                      className="p-2 text-gray-400 hover:text-red-500 hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
+                      title="Eliminar imagen"
+                    >
+                      <HiOutlineTrash className="w-5 h-5" />
+                    </button>
+                  )}
+                </div>
               ))}
             </div>
             {images.length < 4 && (
               <button
                 type="button"
                 onClick={addImageField}
-                className="mt-2 text-primary hover:text-primaryDark"
+                className="mt-2 text-primary hover:text-primary-dark cursor-pointer"
               >
                 + Agregar imagen
               </button>
@@ -180,9 +196,9 @@ function CreatePost() {
                   type="button"
                   onClick={() => actualizarSelectedTags(tag._id)}
                   className={
-                    `px-3 py-1 rounded-lg border transition 
+                    `px-3 py-1 rounded-full border transition 
                                     ${selectedTags.includes(tag._id)
-                      ? "bg-primary text-white border-primary"
+                      ? "bg-secondary/20 text-primary border-primary"
                       : "bg-white border-border hover:bg-background"
                     }`}
                 >
@@ -191,17 +207,18 @@ function CreatePost() {
               ))}
             </div>
           </div>
-          <button
-            type="submit"
-            className="w-full bg-primary hover:bg-primaryDark text-white py-3 rounded-lg transition"
-          >
-            Publicar
-          </button>
+          <div className="flex justify-end mt-6">
+            <button
+              type="submit"
+              className="w-auto bg-primary hover:bg-primary-dark text-white text-lg px-8 py-3 rounded-xl transition cursor-pointer"
+            >
+             Publicar
+            </button>
+          </div>
         </form>
       </div>
     </>
   );
 }
-
 
 export default CreatePost;
