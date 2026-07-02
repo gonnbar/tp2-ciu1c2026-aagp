@@ -1,5 +1,4 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Footer from "../Footer/Footer";
 import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton";
 import MobileBottomNav from "../MobileBottomNav/MobileBottomNav";
 
@@ -9,14 +8,6 @@ export function Layout() {
   const ocultarLayout = ["/", "/login", "/register", "/forgot-pass"].includes(
     location.pathname,
   );
-
-  const ocultarFooter = [
-    "/",
-    "/home",
-    "/login",
-    "/register",
-    "/forgot-pass",
-  ].includes(location.pathname);
 
   return (
     <>
@@ -36,7 +27,6 @@ export function Layout() {
           {!ocultarLayout && <MobileBottomNav />}
         </main>
 
-        {!ocultarFooter && <Footer />}
       </div>
     </>
   );
