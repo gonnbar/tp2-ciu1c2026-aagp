@@ -37,7 +37,7 @@ npm run dev
 ``` bash
 http://localhost:5173
 ```
-### Instalación y Ejecución (backend utilizado)
+### Instalación y Ejecución (backend utilizado: https://github.com/gonnbar/tp2-ciu1c2026-aagp-backend )
 
 1. Clonar el repositorio:
 ```bash
