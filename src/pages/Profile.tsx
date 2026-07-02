@@ -81,22 +81,21 @@ function Profile() {
                       <p className="text-text-secondary">@{user?.nickname}</p>
 
                       <div className="mt-5 flex items-center gap-3">
-                        <span className="font-medium text-text">
-                          Publicaciones realizadas
-                        </span>
-
                         <span
                           className="
-                            bg-primary
+                            bg-secondary
                             text-white
                             px-3
                             py-1
-                            rounded-full
+                            rounded-2xl
                             text-sm
-                            font-bold
                           "
                         >
                           {posts.length}
+                        </span>
+
+                        <span className="font-medium text-text">
+                          Publicaciones realizadas
                         </span>
                       </div>
                     </div>

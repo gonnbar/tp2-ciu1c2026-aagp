@@ -150,28 +150,46 @@ function CreatePost() {
             </label>
             <div className="space-y-4">
               {images.map((image, index) => (
-                <div key={index} className="flex items-center gap-2 mb-2">
-                  <input
-                    type="text"
-                    value={image}
-                    onChange={(e) =>
-                      handleImageChange(index, e.target.value)
-                    }
-                    placeholder="https://..."
-                    className="w-full rounded-md border border-border bg-surface p-2 text-text outline-none focus:border-primary"
-                  />
+                <div key={index} className="space-y-2 mb-2 p-2 border border-border/40 rounded-lg bg-surface/30">
+                  <div className="flex items-center gap-2 mb-2">
+                    <input
+                      type="text"
+                      value={image}
+                      onChange={(e) =>
+                        handleImageChange(index, e.target.value)
+                      }
+                      placeholder="https://..."
+                      className="w-full rounded-md border border-border bg-surface p-2 text-text outline-none focus:border-primary"
+                    />
 
-                  {images.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => removeImageField(index)} 
-                      className="p-2 text-gray-400 hover:text-red-500 hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
-                      title="Eliminar imagen"
-                    >
-                      <HiOutlineTrash className="w-5 h-5" />
-                    </button>
+                    {images.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => removeImageField(index)} 
+                        className="p-2 text-gray-400 hover:text-red-500 hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
+                        title="Eliminar imagen"
+                      >
+                        <HiOutlineTrash className="w-5 h-5" />
+                      </button>
+                    )}
+                  </div>
+                  
+                  {image.trim() !== "" && (
+                    <div className="relative w-20 h-20 bg-surface rounded-md border border-border overflow-hidden group">
+                      <img
+                        src={image}
+                        alt={`Vista previa ${index + 1}`}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLElement).parentElement!.style.display = 'none';
+                        }}
+                        onLoad={(e) => {
+                          (e.target as HTMLElement).parentElement!.style.display = 'block';
+                        }}
+                      />
+                    </div>
                   )}
-                </div>
+                </div>  
               ))}
             </div>
             {images.length < 4 && (
@@ -197,7 +215,7 @@ function CreatePost() {
                   onClick={() => actualizarSelectedTags(tag._id)}
                   className={
                     `px-3 py-1 rounded-full border transition 
-                                    ${selectedTags.includes(tag._id)
+                    ${selectedTags.includes(tag._id)
                       ? "bg-secondary/20 text-primary border-primary"
                       : "bg-white border-border hover:bg-background"
                     }`}
