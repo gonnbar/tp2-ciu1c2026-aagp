@@ -147,9 +147,9 @@ http://localhost:5173
 ![logo](src/screenshots/home.jpg)
 ## Mi perfil
 ![logo](src/screenshots/mi-perfil.jpg)
-## nueva publicacion
+## Nueva publicación
 ![logo](src/screenshots/nueva-publicacion.jpg)
-## Detalle publicacion
+## Detalle publicación
 ![logo](src/screenshots/detalle-publicacion.jpg)
 ## Integrantes
 
