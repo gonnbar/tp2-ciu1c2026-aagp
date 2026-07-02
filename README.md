@@ -55,17 +55,18 @@ http://localhost:5173
 │   ├── assets
 │   │   ├── bannerCel.png
 │   │   ├── bannerDesktop.png
+|   |   ├── banner_abt.png
+|   |   ├── banner_abt_mb.png
 │   │   ├── banner_profile.png
 │   │   ├── logoBienvenida.png
 │   │   ├── logo.png
+|   |   ├── personaje_sb.png
 │   │   └── sideBarImg.png
 │   ├── components
 │   │   ├── CommentForm
 │   │   │   └── CommentForm.tsx
 │   │   ├── CommentList
 │   │   │   └── CommentList.tsx
-│   │   ├── Footer
-│   │   │   └── Footer.tsx
 │   │   ├── ImageCarousel
 │   │   │   └── ImageCarousel.tsx
 │   │   ├── Layout
@@ -76,6 +77,8 @@ http://localhost:5173
 │   │   │   └── MobileBottomNav.tsx
 │   │   ├── PanelDerecho
 │   │   │   └── PanelDerecho.tsx
+│   │   ├── PasswordInput
+│   │   │   └── PasswordInput.tsx
 │   │   ├── PostCard
 │   │   │   └── PostCard.tsx
 │   │   ├── ScrollToTopButton
