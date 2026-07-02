@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { User } from "../types/User"
-import logo from "../assets/logo.png"
+import type { User } from "../types/User";
+import logo from "../assets/logo.png";
+import PasswordInput from "../components/PasswordInput/PasswordInput";
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
@@ -28,9 +29,7 @@ export default function ForgotPassword() {
       const usersRes = await fetch("http://localhost:3000/users");
       const users = await usersRes.json();
 
-      const foundUser = users.find(
-        (u: any) => u.nickname === nickname
-      );
+      const foundUser = users.find((u: any) => u.nickname === nickname);
 
       if (!foundUser) {
         setError("Usuario inexistente.");
@@ -38,7 +37,7 @@ export default function ForgotPassword() {
       }
 
       const userRes = await fetch(
-        `http://localhost:3000/users/${foundUser._id}`
+        `http://localhost:3000/users/${foundUser._id}`,
       );
 
       const data = await userRes.json();
@@ -50,7 +49,6 @@ export default function ForgotPassword() {
 
       setUser(data.user);
       setStep(2);
-
     } catch {
       setError("Ocurrió un error.");
     }
@@ -74,16 +72,13 @@ export default function ForgotPassword() {
         email: user.email,
         password: newPassword,
       };
-      const response = await fetch(
-        `http://localhost:3000/users/${user._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedUser),
-        }
-      );
+      const response = await fetch(`http://localhost:3000/users/${user._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedUser),
+      });
 
       const body = await response.text();
       console.log(body);
@@ -97,18 +92,15 @@ export default function ForgotPassword() {
       setTimeout(() => {
         navigate("/login");
       }, 2000);
-
     } catch {
       setError("Ocurrió un error.");
     }
   }
 
   return (
-    <div className="flex min-h-ful flex-col justify-center px-6 py-12 lg:px-8 pt-30">
-
+    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 pt-30">
       <div className="mx-auto w-full max-w-md rounded-xl bg-[var(--surface-soft)] shadow-lg px-6 py-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-
           <img src={logo} alt="Logo UnaHur" className="mx-auto h-15 w-auto" />
           <h2 className="mt-6 mb-6 text-center text-2xl font-bold tracking-tight text-text">
             Recuperar contraseña
@@ -135,9 +127,7 @@ export default function ForgotPassword() {
                 onChange={(e) => setEmail(e.target.value)}
               />
 
-              <button
-                className="bg-primary hover:bg-primary-dark text-white text-lg px-4 py-2 rounded-lg cursor-pointer"
-              >
+              <button className="bg-primary hover:bg-primary-dark text-white text-lg px-4 py-2 rounded-lg cursor-pointer">
                 Continuar
               </button>
             </form>
@@ -146,44 +136,35 @@ export default function ForgotPassword() {
           {step === 2 && (
             <form
               onSubmit={handleChangePassword}
-              className="p-6 flex flex-col gap-3"
+              className="p-6 flex flex-col gap-3 space-y-4"
             >
-              <input
-                className="w-full border border-gray-300 rounded-lg p-2"
-                type="password"
-                placeholder="Nueva contraseña"
+              <PasswordInput
                 value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
+                onChange={setNewPassword}
+                placeholder="Nueva contraseña"
+                className="w-full rounded-md border border-border bg-surface p-2 text-text outline-none focus:border-primary"
               />
 
-              <input
-                className="w-full border border-gray-300 rounded-lg p-2"
-                type="password"
-                placeholder="Confirmar contraseña"
+              <PasswordInput
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                onChange={setConfirmPassword}
+                placeholder="Confirmar contraseña"
+                className="w-full rounded-md border border-border bg-surface p-2 text-text outline-none focus:border-primary"
               />
-
-              <button
-                className="rounded-lg bg-violet-600 px-4 py-2 text-white hover:bg-violet-700"
-              >
+              
+              <button className="bg-primary hover:bg-primary-dark text-white text-lg px-4 py-2 rounded-lg cursor-pointer">
                 Cambiar contraseña
               </button>
             </form>
           )}
 
           {error && (
-            <p className="mt-4 text-center text-sm text-red-500">
-              {error}
-            </p>
+            <p className="mt-4 text-center text-sm text-red-500">{error}</p>
           )}
 
           {success && (
-            <p className="mt-4 text-center text-sm text-green-600">
-              {success}
-            </p>
+            <p className="mt-4 text-center text-sm text-green-600">{success}</p>
           )}
-
         </div>
       </div>
     </div>
