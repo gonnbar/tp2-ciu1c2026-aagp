@@ -21,6 +21,7 @@ export default function ScrollToTopButton() {
         hover:bg-primary-dark
         transition
         cursor-pointer
+        lg:hidden
         "
     >
       <HiArrowUp className="w-4 h-4 stroke-2" />

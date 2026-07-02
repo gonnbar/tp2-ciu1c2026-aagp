@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Tag } from "../../types/Tag";
 import { getTags } from "../../services/tags";
 import { HiHashtag } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
 function PanelDerecho() {
   const [tags, setTags] = useState<Tag[]>([]);
@@ -25,8 +26,7 @@ function PanelDerecho() {
   return (
     <aside className="hidden lg:block  w-full">
       <div className="flex flex-col gap-6">
-
-        <div 
+        <div
           className="
             rounded-2xl
             bg-[var(--surface-soft)]
@@ -89,8 +89,10 @@ function PanelDerecho() {
               className="
                 mt-8
                 w-full
-                rounded-xl
+                rounded-2xl
                 bg-secondary/20
+                border
+                border-primary/20
                 text-primary
                 font-semibold
                 py-3
@@ -104,7 +106,7 @@ function PanelDerecho() {
           )}
         </div>
 
-        <div 
+        <div
           className="
             rounded-2xl
             bg-[var(--surface-soft)]
@@ -114,21 +116,95 @@ function PanelDerecho() {
             p-6
           "
         >
-          <h2 className="text-xl font-bold text-text mb-4">
-            UNAHUR
-          </h2>
+          <div className="mt-3 flex justify-center">
+            <div className="max-w-[220px]">
+              <h2 className="text-xl font-bold text-text mb-4">Sobre nosotros</h2>
 
-          <p className="text-sm text-text-secondary leading-relaxed">
-            UnaHur Anti-Social Net es una red social diseñada exclusivamente
-            para los estudiantes de la Universidad Nacional de Hurlingham. 
-            Aquí podés compartir publicaciones, hacer consultas, intercambiar
-            apuntes, debatir sobre materias, recomendar recursos y conectar con
-            otros estudiantes de la comunidad. Buscamos crear un espacio donde
-            el aprendizaje colaborativo y la participación sean los
-            protagonistas, dejando de lado el ruido de las redes sociales
-            tradicionales. 
-            <br /><br />
-            Menos ruido, más vos.
+              <p className="text-sm text-text-secondary leading-6">
+                UnaHur Anti-Social Net es una red social diseñada para los estudiantes de la
+                Universidad Nacional de Hurlingham. 
+                Acá podés compartir posteos, hacer consultas, intercambiar
+                apuntes, recomendar recursos y conectar con
+                otros estudiantes de la comunidad. Buscamos crear un espacio donde
+                el aprendizaje colaborativo y la participación sean los
+                protagonistas, dejando de lado el ruido de las redes sociales
+                tradicionales.
+                <br /> <br />
+                Menos ruido, más vos.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex justify-end">
+            <Link
+              to="/about"
+              className="
+                inline-flex
+                items-center
+                gap-2
+                rounded-2xl
+                border
+                border-primary/20
+                bg-primary/10
+                px-4
+                py-2
+                text-sm
+                font-medium
+                text-primary-dark
+                transition
+                hover:bg-primary/20
+              "
+            >
+              Conocer más
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-4 p-5">
+          <div
+            className="
+              flex
+              flex-wrap
+              gap-x-2
+              gap-y-1
+              text-xs
+              text-text-secondary
+              leading-5
+            "
+          >
+            <button className="hover:text-primary transition">Términos</button>
+
+            <span>·</span>
+
+            <button className="hover:text-primary transition">
+              Privacidad
+            </button>
+
+            <span>·</span>
+
+            <button className="hover:text-primary transition">Cookies</button>
+
+            <span>·</span>
+
+            <button className="hover:text-primary transition">
+              Accesibilidad
+            </button>
+
+            <span>·</span>
+
+            <button
+              className="
+                hover:text-primary
+                transition
+                cursor-pointer
+              "
+            >
+              Más opciones
+            </button>
+          </div>
+
+          <p className="mt-4 text-xs text-text-secondary">
+            © 2026 UnaHur Anti-Social Net
           </p>
         </div>
       </div>

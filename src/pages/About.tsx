@@ -1,7 +1,7 @@
 function About() {
   return(
     <div className="min-h-screen py-10 px-6">
-      <div className="max-w-4xl mx-auto bg-surface rounded-2xl shadow-md p-8">
+      <div className="max-w-4xl mx-auto bg-[var(--surface-soft)] shadow-[0_12px_40px_rgba(109,66,216,.07)] rounded-2xl shadow-md p-8">
         <h1 className="text-4xl font-bold text-primary text-center mb-6">
           Sobre Nosotros
         </h1>
