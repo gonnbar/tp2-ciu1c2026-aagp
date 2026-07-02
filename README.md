@@ -133,7 +133,18 @@ http://localhost:5173
 └── vite.config.ts
 ```
 ## Screenshots
-
+Pagina de bienvenida
+![logo](src/screenshots/welcome.jpg)
+Login
+![logo](src/screenshots/login.jpg)
+Registro
+![logo](src/screenshots/registro.jpg)
+Home
+![logo](src/screenshots/home.jpg)
+Mi perfil
+![logo](src/screenshots/mi-perfil.jpg)
+nueva publicacion
+![logo](src/screenshots/nueva-publicacion.jpg)
 ## Integrantes
 
 | Nombre | GitHub |
