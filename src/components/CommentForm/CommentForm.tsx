@@ -67,6 +67,7 @@ export default function CommentForm({ userId, postId, onCommentCreated }: Commen
         flex
         flex-col
         gap-4
+        bg-[var(--surface-soft)] 
       "
     >
       <div className="flex-1">
@@ -76,7 +77,7 @@ export default function CommentForm({ userId, postId, onCommentCreated }: Commen
             border-border
             rounded-xl
             overflow-hidden
-            bg-white
+            bg-[var(--surface-soft)] 
             focus-within:ring-2
             focus-within:ring-primary
           "
@@ -90,7 +91,7 @@ export default function CommentForm({ userId, postId, onCommentCreated }: Commen
             className="
               block
               w-full
-              bg-white
+              bg-surface
               px-4
               py-3
               leading-5
@@ -114,13 +115,14 @@ export default function CommentForm({ userId, postId, onCommentCreated }: Commen
         </p>
       </div>
 
-      <button
+      <div className="flex justify-end mt-6">
+        <button
         type="submit"
         disabled={!content.trim()}
         className="
           bg-primary
           hover:bg-primary-dark
-          disabled:bg-gray-300
+          disabled:bg-secondary/30
           disabled:cursor-not-allowed
           text-white
           px-8
@@ -131,9 +133,10 @@ export default function CommentForm({ userId, postId, onCommentCreated }: Commen
           rounded-xl
           cursor-pointer
         "
-      >
-        Comentar
-      </button>
+        >
+          Comentar
+        </button>
+      </div>
     </form>
   );
 }
